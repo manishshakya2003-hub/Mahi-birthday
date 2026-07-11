@@ -3,68 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Mahi</title>
+    <title>Happy Birthday Mahi ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Section 1: Intro & Cake Cutting (With Winking Avatar) -->
-    <div class="card-section pop-up">
-        <img src="avatar1.png" class="corner-avatar top-right" alt="Mahi Sticker">
-        <h1 class="main-title">Happy Birthday, Mahi! 🎂</h1>
-        <div class="cake-container">
-            <div class="cake" id="birthdayCake" onclick="cutCake()">
-                <div class="flame" id="candleFlame"></div>
-                <div class="candle"></div>
-                <div class="top-layer"></div>
-                <div class="bottom-layer"></div>
+    <audio id="bgSong" loop>
+        <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
+    </audio>
+
+    <img src="png1.jpg" class="floating-avatar stk-left" alt="Sticker Left">
+    <img src="png2.jpg" class="floating-avatar stk-right" alt="Sticker Right">
+
+    <div id="loader">
+        <h1>💖</h1>
+        <h2>For Someone Very Special...</h2>
+        <p>Dear Mahi ❤️</p>
+        <button onclick="openGift()">🎁 Tap To Open</button>
+    </div>
+
+    <div id="main" style="display:none;">
+
+        <section class="card cake-card">
+            <div class="cake-box" id="cakeContainer" onclick="handleCakeClick()">
+                <div class="cake-emoji" id="cakeDisplay">
+                    <span class="candle-flame" id="flameElement">🔥</span>
+                    🎂
+                </div>
+                <p class="instruction-text" id="cakeStatus">Tap the cake to blow the candle! 🕯️</p>
             </div>
-            <p id="cakeText" class="instruction">Tap the cake to blow the candle & cut it! 🕯️</p>
-        </div>
-    </div>
+        </section>
 
-    <!-- Section 2: Audio Portal (With Smiling Avatar) -->
-    <div class="card-section pop-up delay-1">
-        <img src="avatar2.png" class="corner-avatar top-left" alt="Mahi Sticker">
-        <div class="audio-container">
-            <span class="sticker-emoji">🎵</span>
-            <p class="audio-subtext">Tap to hear a small piece of peace for your big journey... ✨</p>
-            <audio controls class="custom-audio">
-                <!-- Abhi jo file uploaded hai uska naam yahan set kiya hai -->
-                <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-    </div>
+        <section class="hero">
+            <h1>🎂 Happy Birthday Mahi ❤️</h1>
+            <p>12 July...<br>The day the world got someone truly beautiful.</p>
+        </section>
 
-    <!-- Section 3: Her Absolute Favorites (With Happy Avatar) -->
-    <div class="card-section pop-up delay-2">
-        <img src="avatar3.png" class="corner-avatar bottom-right" alt="Mahi Sticker">
-        <h2 class="section-title">Some of Your Favorite Things 💖</h2>
-        <div class="fav-grid">
-            <div class="fav-item"><strong>🍲 Food:</strong> Chole Bhature, Pasta, Dhokla, Dosa</div>
-            <div class="fav-item"><strong>🥟 Street Food:</strong> Momos (Of course!)</div>
-            <div class="fav-item"><strong>🎬 Movies:</strong> Maya, Nadiya Ke Paar, Fidaa</div>
-            <div class="fav-item"><strong>🏸 Sport:</strong> Badminton Champ</div>
-            <div class="fav-item"><strong>🍕 Pizza:</strong> Classic Margherita</div>
-            <div class="fav-item"><strong>🍂 Season:</strong> Monsoon (Without rain 😉)</div>
-            <div class="fav-item" style="grid-column: span 2;"><strong>🌿 Perfect Place:</strong> Jaha bas greenery aur dher saari shanti ho...</div>
-        </div>
-    </div>
+        <section class="card">
+            <h2>💌 A Letter From Manish</h2>
+            <p>
+                Dear Mahi,<br><br>
+                November 2024...<br>
+                Pata hi nahi chala kab tum meri life ka itna important part ban gayi.<br><br>
+                Tum sirf meri girlfriend nahi ho. Tum meri smile ho. Meri dua ho. Aur meri motivation ho. Mujhe tum par bahut proud feel hota hai ki tum UPSC ki preparation kar rahi ho. Main dil se dua karta hoon ki ek din tum apna sapna zaroor pura karo. Chahe kitni bhi mushkile aaye... Please kabhi give up mat karna. Main hamesha tumhare liye pray karunga. ❤️
+            </p>
+        </section>
 
-    <!-- Section 4: The Deep Wish (With Final Avatar) -->
-    <div class="card-section pop-up delay-3">
-        <p class="wish-text">
-            Happy Birthday to the person who holds the most special place in my heart. You are the sweetest human I’ve ever known—my <strong>golumolu</strong>, my <strong>kuchupuchu</strong>. You make my world brighter just by being in it.
-        </p>
-        <p class="wish-text">
-            Seeing your dedication towards your dreams makes me admire you even more. May this special year bring you the unwavering strength to conquer every single hurdle, the focus to master your goals, and the best of health to sustain your journey.
-        </p>
-        
-        <div class="lbsnaa-badge">
-            🏛️ LBSNAA is waiting for you, Future IAS! 💼
-        </div>
-        <p class="signature">— Manish</p>
+        <section class="card">
+            <div style="text-align:center; margin-bottom: 15px;">
+                <img src="png3.jpg" style="width: 80px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Favorite Sticker">
+            </div>
+            <h2>🌸 Your Favourite Things</h2>
+            <ul>
+                <li>💚 Pastel Colours</li>
+                <li>🥟 Momos</li>
+                <li>🍝 Pasta</li>
+                <li>🍕 Margherita Pizza</li>
+                <li>🥘 Chole Bhature</li>
+                <li>🥞 Dosa</li>
+                <li>🌧 Monsoon</li>
+                <li>🏸 Badminton</li>
+                <li>🎶 Lapataa</li>
+                <li>🌿 Greenery & Peace</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>📚 Future IAS Officer ❤️</h2>
+            <p>
+                I know one day you'll become an independent woman.<br>
+                I believe in your dreams.<br>
+                Keep studying.<br>
+                Keep smiling.<br>
+                I'll always be proud of you. ❤️
+            </p>
+            <div class="lbsnaa-badge">
+                🏛️ LBSNAA is waiting for you, Future IAS! 💼
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>❤️ Forever</h2>
+            <p>
+                Distance can stop hugs.<br>
+                Distance can stop hand holding.<br>
+                But it can never stop someone from loving you.<br><br>
+                Happy Birthday Mahi.<br>
+                Forever Yours,<br><br>
+                <strong>❤️ Manish ❤️</strong>
+            </p>
+        </section>
+
     </div>
 
     <script src="script.js"></script>
