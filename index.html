@@ -42,7 +42,38 @@
 
         #loader p {
             font-size: 22px;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
+        }
+
+        /* Countdown Timer Styling */
+        .countdown-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(255, 79, 136, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-num {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4f88;
+        }
+
+        .time-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #666;
+            letter-spacing: 1px;
         }
 
         button.btn-main {
@@ -203,7 +234,8 @@
     </style>
 </head>
 <body>
-<audio id="bgSong" loop>
+
+    <audio id="bgSong" loop>
         <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
     </audio>
 
@@ -214,12 +246,19 @@
         <h1>💖</h1>
         <h2>For Someone Very Special...</h2>
         <p>Dear Mahi ❤️</p>
+        
+        <div class="countdown-container" id="countdownBox">
+            <div class="time-box"><span class="time-num" id="days">00</span><span class="time-label">Days</span></div>
+            <div class="time-box"><span class="time-num" id="hours">00</span><span class="time-label">Hrs</span></div>
+            <div class="time-box"><span class="time-num" id="minutes">00</span><span class="time-label">Mins</span></div>
+            <div class="time-box"><span class="time-num" id="seconds">00</span><span class="time-label">Secs</span></div>
+        </div>
+
         <button class="btn-main" onclick="openGift()">🎁 Tap To Open</button>
     </div>
 
     <div id="main" style="display:none;">
 
-        <!-- Page 1: Cake Introduction -->
         <div class="story-page active" id="page-1">
             <h1>✨ Card 1/6 ✨</h1>
             <div class="cake-box" onclick="handleCakeClick()">
@@ -231,14 +270,12 @@
             </div>
         </div>
 
-        <!-- Page 2: Identity Welcome Header -->
         <div class="story-page" id="page-2">
             <h2>✨ Card 2/6 ✨</h2>
             <h1 style="font-size:40px; margin-bottom:20px;">🎂 Happy Birthday Mahi ❤️</h1>
             <p style="text-align:center; font-size:24px;">12 July...<br><br>The day the world got someone truly beautiful, pure, and absolutely unique. ✨🌸</p>
         </div>
 
-        <!-- Page 3: Personal Letter Box -->
         <div class="story-page" id="page-3">
             <h2>✨ Card 3/6 ✨</h2>
             <h2 style="font-size:28px;">💌 A Piece of My Heart For You</h2>
@@ -249,7 +286,6 @@
             </p>
         </div>
 
-        <!-- Page 4: Polaroid Collage Grid -->
         <div class="story-page" id="page-4">
             <h2>✨ Card 4/6 ✨</h2>
             <div style="text-align:center; margin-bottom: 10px;">
@@ -266,7 +302,6 @@
             </div>
         </div>
 
-        <!-- Page 5: Believe in Dreams Box -->
         <div class="story-page" id="page-5">
             <h2>✨ Card 5/6 ✨</h2>
             <h2>📚 Believe In Your Dream Job ❤️</h2>
@@ -275,13 +310,12 @@
             </p>
         </div>
 
-        <!-- Page 6: Deep Wishes & Flower Bouquet -->
         <div class="story-page" id="page-6">
             <h2>✨ Card 6/6 ✨</h2>
             <h2>💝 My Warmest Wishes For You</h2>
             <div style="font-size: 60px; margin-bottom: 15px;">💐</div>
             <p>
-                Happy Birthday to the person who holds the most special place in my heart. You are the sweetest human I’ve ever known my golumolu,my kuchupuchu. You make my world brighter just by being in it. Stay exactly the way you are, always. I’m so lucky to have you. May this beautiful year bring you closer to all your goals, unlock new milestones, and fill your life with the boundless happiness you truly deserve. Keep shining bright, always! ❤️
+                Happy Birthday to the person who holds the most special place in my heart. You are the sweetest human I’ve ever known my golumolu, my kuchupuchu. You make my world brighter just by being in it. Stay exactly the way you are, always. I’m so lucky to have you. May this beautiful year bring you closer to all your goals, unlock new milestones, and fill your life with the boundless happiness you truly deserve. Keep shining bright, always! ❤️
             </p>
             <p style="text-align:right; font-weight:bold; margin-top:25px; color:#ff4f88;">— ❤️ Manish ❤️</p>
         </div>
@@ -296,8 +330,71 @@
     <script>
         let currentPage = 1;
         const totalPages = 6;
+        let cakeState = 0; 
+        let isBirthdayArrived = false;
+
+        // TARGET DATE: 12 July (Year automatically calculated dynamically based on current runtime)
+        const currentYear = new Date().getFullYear();
+        const targetDate = new Date(`July 12, ${currentYear} 00:00:00`).getTime();
+
+        // Countdown System Logic
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                clearInterval(countdownInterval);
+                isBirthdayArrived = true;
+                document.getElementById("countdownBox").innerHTML = "<p style='color:#ff4f88; font-weight:bold; font-size:20px; animation: heartbeat 1s infinite;'>🎉 The Big Day Is Finally Here! 🥳</p>";
+                return;
+            }
+
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+        }, 1000);
 
         function openGift() {
+            // PASSWORDS CONFIGURATION
+            const BYPASS_PASSWORD = "manish123"; // Apka Secret Code
+            const MAHI_PASSWORD = "mahi12";     // Mahi ka Code
+
+            const userPass = prompt("Enter the Secret Unlock Code Key 🔐:");
+            
+            if (userPass === null) return; // User cleared/canceled popup
+
+            // 1. Bypass Logic check
+            if (userPass === BYPASS_PASSWORD) {
+                alert("Welcome Manish! Bypass Access Granted. 😉❤️");
+                unlockWebsite();
+                return;
+            }
+
+            // 2. Main Logic Engine
+            if (isBirthdayArrived) {
+                if (userPass === MAHI_PASSWORD) {
+                    alert("Correct Code! Happy Birthday Mahi! 🎉🎂💖");
+                    unlockWebsite();
+                } else {
+                    alert("Oops! Galat password hai, ek baar check karo! ❌");
+                }
+            } else {
+                // If it's early and code is wrong or she types her own code too early
+                if(userPass === MAHI_PASSWORD) {
+                    alert("Ahaan! Sabr ka phal meetha hota hai golumolu! Itna jaldi nahi, 12 baje ka wait karo! 😉⏳");
+                } else {
+                    alert("The Gift is locked tightly! It will unlock precisely at midnight 12 July! 🔒⏳");
+                }
+            }
+        }
+
+        function unlockWebsite() {
             document.getElementById("loader").style.display = "none";
             document.getElementById("main").style.display = "flex";
             
@@ -318,7 +415,6 @@
             if (currentPage > totalPages) {
                 currentPage = totalPages;
                 document.getElementById(`page-${currentPage}`).classList.add("active");
-                // Final Finish Trigger: Massive Flower Explosion!
                 for(let i=0; i<4; i++) {
                     setTimeout(() => triggerEmojiExplosion(true), i*250);
                 }
@@ -332,19 +428,16 @@
             triggerEmojiExplosion(false);
         }
 
-        // Modified Engine to support standard mixed emojis or complete Flower Explosion
         function triggerEmojiExplosion(isFlowerEnd) {
             const standardEmojis = ["🌸", "✨", "💖", "🎈", "🥳", "🍬", "🦋", "🦄"];
             const flowerEmojis = ["🌸", "🌹", "🌻", "🌼", "💐", "🌺", "🌷", "💝"];
             const activePool = isFlowerEnd ? flowerEmojis : standardEmojis;
-            
-            const totalCount = isFlowerEnd ? 25 : 15; // More dense on final click
+            const totalCount = isFlowerEnd ? 25 : 15;
             
             for (let i = 0; i < totalCount; i++) {
                 const emo = document.createElement("div");
                 emo.className = "burst-emoji";
                 emo.innerHTML = activePool[Math.floor(Math.random() * activePool.length)];
-                
                 emo.style.left = "50vw";
                 emo.style.top = "50vh";
                 
@@ -358,7 +451,6 @@
             }
         }
 
-        let cakeState = 0; 
         function handleCakeClick() {
             const flame = document.getElementById("flameElement");
             const status = document.getElementById("cakeStatus");
@@ -370,7 +462,7 @@
                 cakeState = 1;
                 triggerEmojiExplosion(false);
             } else if (cakeState === 1) {
-                display.innerHTML = "🍰✨"; 
+                display.innerHTML = '<span class="candle-flame" id="flameElement" style="display:none;">🔥</span>🍰✨'; 
                 status.innerHTML = "Cake Cut Successfully! Yayyy! Happy Birthday Mahi! 🎉❤️";
                 status.style.color = "#ff4f88";
                 status.style.fontWeight = "bold";
