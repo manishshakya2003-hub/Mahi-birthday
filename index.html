@@ -71,9 +71,8 @@
             padding: 20px;
         }
 
-        /* --- Step-by-Step Card Animations --- */
         .story-page {
-            display: none; /* Initially hidden */
+            display: none;
             background: white;
             padding: 35px;
             border-radius: 25px;
@@ -98,7 +97,6 @@
         .story-page h2 { color: #ff4f88; margin-bottom: 20px; font-size: 32px; }
         .story-page p, .story-page li { font-size: 20px; line-height: 1.8; text-align: justify; }
 
-        /* --- Navigation Controller Layout --- */
         .nav-controls {
             display: flex;
             gap: 20px;
@@ -124,7 +122,6 @@
             transform: translateY(-2px);
         }
 
-        /* --- Polaroid Items in Page 4 --- */
         .collage-container {
             display: flex;
             flex-wrap: wrap;
@@ -149,7 +146,6 @@
         .collage-label { font-size: 13px; font-weight: bold; color: #ff4f88; }
         .collage-val { font-size: 14px; color: #666; }
 
-        /* Cake elements */
         .cake-box { display: flex; flex-direction: column; align-items: center; cursor: pointer; margin: 20px 0; }
         .cake-emoji { font-size: 80px; position: relative; }
         .candle-flame { position: absolute; top: -10px; left: 28px; font-size: 25px; animation: candleFlicker 0.6s infinite alternate; }
@@ -158,7 +154,6 @@
             0% { transform: scale(1); } 100% { transform: scale(1.1); }
         }
 
-        /* --- Floating Elements --- */
         .floating-avatar {
             position: fixed;
             width: 75px;
@@ -208,15 +203,13 @@
     </style>
 </head>
 <body>
-
-    <audio id="bgSong" loop>
+<audio id="bgSong" loop>
         <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
     </audio>
 
     <img src="png1.jpg" class="floating-avatar stk-left" alt="Sticker Left">
     <img src="png2.jpg" class="floating-avatar stk-right" alt="Sticker Right">
 
-    <!-- Screen Loader -->
     <div id="loader">
         <h1>💖</h1>
         <h2>For Someone Very Special...</h2>
@@ -224,12 +217,11 @@
         <button class="btn-main" onclick="openGift()">🎁 Tap To Open</button>
     </div>
 
-    <!-- Main Controller Shell -->
     <div id="main" style="display:none;">
 
         <!-- Page 1: Cake Introduction -->
         <div class="story-page active" id="page-1">
-            <h1>✨ Card 1/5 ✨</h1>
+            <h1>✨ Card 1/6 ✨</h1>
             <div class="cake-box" onclick="handleCakeClick()">
                 <div class="cake-emoji" id="cakeDisplay">
                     <span class="candle-flame" id="flameElement">🔥</span>
@@ -241,14 +233,14 @@
 
         <!-- Page 2: Identity Welcome Header -->
         <div class="story-page" id="page-2">
-            <h2>✨ Card 2/5 ✨</h2>
+            <h2>✨ Card 2/6 ✨</h2>
             <h1 style="font-size:40px; margin-bottom:20px;">🎂 Happy Birthday Mahi ❤️</h1>
             <p style="text-align:center; font-size:24px;">12 July...<br><br>The day the world got someone truly beautiful, pure, and absolutely unique. ✨🌸</p>
         </div>
 
         <!-- Page 3: Personal Letter Box -->
         <div class="story-page" id="page-3">
-            <h2>✨ Card 3/5 ✨</h2>
+            <h2>✨ Card 3/6 ✨</h2>
             <h2 style="font-size:28px;">💌 A Piece of My Heart For You</h2>
             <p>
                 Dear Mahi,<br><br>
@@ -259,7 +251,7 @@
 
         <!-- Page 4: Polaroid Collage Grid -->
         <div class="story-page" id="page-4">
-            <h2>✨ Card 4/5 ✨</h2>
+            <h2>✨ Card 4/6 ✨</h2>
             <div style="text-align:center; margin-bottom: 10px;">
                 <img src="png3.jpg" style="width: 75px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Favorite Sticker">
             </div>
@@ -274,21 +266,26 @@
             </div>
         </div>
 
-        <!-- Page 5: Deep Wishes Summary -->
+        <!-- Page 5: Believe in Dreams Box -->
         <div class="story-page" id="page-5">
-            <h2>✨ Card 5/5 ✨</h2>
+            <h2>✨ Card 5/6 ✨</h2>
             <h2>📚 Believe In Your Dream Job ❤️</h2>
-            <p style="margin-bottom:20px;">
+            <p>
                 I know one day you'll conquer the world, step into your dream job, and become a fiercely independent woman. I believe in your strength, your focus, and every single dream you hold close to your heart. Keep working hard, keep smiling, and never doubt how incredible you are. I'll always be standing by your side, immensely proud of you at every step. ❤️
             </p>
-            <hr style="border:0; border-top:1px dashed #ffa6c9; margin:15px 0;">
-            <p>
-                Happy Birthday to the person who holds the most special place in my heart. You are the sweetest human I’ve ever known my golumolu, my kuchupuchu. You make my world brighter just by being in it. Stay exactly the way you are, always. I’m so lucky to have you. May this beautiful year bring you closer to all your goals, unlock new milestones, and fill your life with the boundless happiness you truly deserve. Keep shining bright, always! ❤️
-            </p>
-            <p style="text-align:right; font-weight:bold; margin-top:20px; color:#ff4f88;">— ❤️ Manish ❤️</p>
         </div>
 
-        <!-- Navigation System Button Deck -->
+        <!-- Page 6: Deep Wishes & Flower Bouquet -->
+        <div class="story-page" id="page-6">
+            <h2>✨ Card 6/6 ✨</h2>
+            <h2>💝 My Warmest Wishes For You</h2>
+            <div style="font-size: 60px; margin-bottom: 15px;">💐</div>
+            <p>
+                Happy Birthday to the person who holds the most special place in my heart. You are the sweetest human I’ve ever known my golumolu,my kuchupuchu. You make my world brighter just by being in it. Stay exactly the way you are, always. I’m so lucky to have you. May this beautiful year bring you closer to all your goals, unlock new milestones, and fill your life with the boundless happiness you truly deserve. Keep shining bright, always! ❤️
+            </p>
+            <p style="text-align:right; font-weight:bold; margin-top:25px; color:#ff4f88;">— ❤️ Manish ❤️</p>
+        </div>
+
         <div class="nav-controls">
             <button class="nav-btn" id="prevBtn" onclick="changePage(-1)" style="visibility:hidden;">⬅️ Back</button>
             <button class="nav-btn" id="nextBtn" onclick="changePage(1)">Next ➡️</button>
@@ -298,55 +295,61 @@
 
     <script>
         let currentPage = 1;
-        const totalPages = 5;
+        const totalPages = 6;
 
         function openGift() {
             document.getElementById("loader").style.display = "none";
             document.getElementById("main").style.display = "flex";
             
-            // Activate stickers
             const avatars = document.querySelectorAll('.floating-avatar');
             avatars.forEach(avatar => avatar.style.display = 'block');
             
-            // Audio execution safe loop
             const audio = document.getElementById("bgSong");
             if (audio) {
                 audio.play().catch(err => console.log("System verified background sound"));
             }
-            triggerEmojiExplosion();
+            triggerEmojiExplosion(false);
         }
 
         function changePage(direction) {
             document.getElementById(`page-${currentPage}`).classList.remove("active");
             currentPage += direction;
-            document.getElementById(`page-${currentPage}`).classList.add("active");
-
-            document.getElementById("prevBtn").style.visibility = currentPage === 1 ? "hidden" : "visible";
-            document.getElementById("nextBtn").innerHTML = currentPage === totalPages ? "Finish 🎉" : "Next ➡️";
             
             if (currentPage > totalPages) {
                 currentPage = totalPages;
                 document.getElementById(`page-${currentPage}`).classList.add("active");
-                for(let i=0; i<3; i++) setTimeout(triggerEmojiExplosion, i*300);
+                // Final Finish Trigger: Massive Flower Explosion!
+                for(let i=0; i<4; i++) {
+                    setTimeout(() => triggerEmojiExplosion(true), i*250);
+                }
                 return;
             }
 
-            triggerEmojiExplosion();
+            document.getElementById(`page-${currentPage}`).classList.add("active");
+            document.getElementById("prevBtn").style.visibility = currentPage === 1 ? "hidden" : "visible";
+            document.getElementById("nextBtn").innerHTML = currentPage === totalPages ? "Finish 🎉" : "Next ➡️";
+            
+            triggerEmojiExplosion(false);
         }
 
-        // Cute Emojis Burst Engine for step transitions
-        function triggerEmojiExplosion() {
-            const emojis = ["🌸", "✨", "💖", "🎈", "🥳", "🍬", "🦋", "🦄"];
-            for (let i = 0; i < 15; i++) {
+        // Modified Engine to support standard mixed emojis or complete Flower Explosion
+        function triggerEmojiExplosion(isFlowerEnd) {
+            const standardEmojis = ["🌸", "✨", "💖", "🎈", "🥳", "🍬", "🦋", "🦄"];
+            const flowerEmojis = ["🌸", "🌹", "🌻", "🌼", "💐", "🌺", "🌷", "💝"];
+            const activePool = isFlowerEnd ? flowerEmojis : standardEmojis;
+            
+            const totalCount = isFlowerEnd ? 25 : 15; // More dense on final click
+            
+            for (let i = 0; i < totalCount; i++) {
                 const emo = document.createElement("div");
                 emo.className = "burst-emoji";
-                emo.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                emo.innerHTML = activePool[Math.floor(Math.random() * activePool.length)];
                 
                 emo.style.left = "50vw";
                 emo.style.top = "50vh";
                 
-                const mx = (Math.random() - 0.5) * 300 + "px";
-                const my = (Math.random() - 0.5) * 300 + "px";
+                const mx = (Math.random() - 0.5) * 350 + "px";
+                const my = (Math.random() - 0.5) * 350 + "px";
                 emo.style.setProperty('--mx', mx);
                 emo.style.setProperty('--my', my);
                 
@@ -355,7 +358,6 @@
             }
         }
 
-        // Cake Actions Engine
         let cakeState = 0; 
         function handleCakeClick() {
             const flame = document.getElementById("flameElement");
@@ -366,18 +368,17 @@
                 if(flame) flame.style.display = "none";
                 status.innerHTML = "Candle blown successfully! Now tap again to cut the cake! 🔪";
                 cakeState = 1;
-                triggerEmojiExplosion();
+                triggerEmojiExplosion(false);
             } else if (cakeState === 1) {
                 display.innerHTML = "🍰✨"; 
                 status.innerHTML = "Cake Cut Successfully! Yayyy! Happy Birthday Mahi! 🎉❤️";
                 status.style.color = "#ff4f88";
                 status.style.fontWeight = "bold";
                 cakeState = 2;
-                triggerEmojiExplosion();
+                triggerEmojiExplosion(false);
             }
         }
 
-        // Standard floating hearts loops
         function createHeart() {
             const heart = document.createElement("div");
             heart.className = "heart";
