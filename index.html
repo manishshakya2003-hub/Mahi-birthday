@@ -1,460 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Mahi ❤️</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mahi ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-        body {
-            background: #fff5f8 !important;
-            overflow-x: hidden;
-            color: #444;
-            min-height: 100vh;
-        }
+        body {
+            background: linear-gradient(135deg, #ffd6e8, #ffeef5, #fff8fc) !important;
+            overflow-x: hidden;
+            color: #444;
+            min-height: 100vh;
+        }
 
-        /* --- Screens Framework --- */
-        #passScreen, #countdownScreen, #loader, #main {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-        }
+        #loader {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
 
-        #passScreen, #countdownScreen, #main { display: none; }
+        #loader h1 {
+            font-size: 70px;
+            animation: heartbeat 1.5s infinite;
+        }
 
-        #passScreen { background: linear-gradient(135deg, #ffd6e8, #ffeef5, #fff8fc); }
-        #countdownScreen { background: linear-gradient(135deg, #ffe4e1, #fff0f5, #ffe4e1); }
-        #loader { background: linear-gradient(135deg, #ffd6e8, #ffeef5, #fff8fc); }
+        #loader h2 {
+            font-size: 40px;
+            color: #ff4f88;
+            margin: 15px 0;
+        }
 
-        /* --- Card & Decor Glow System --- */
-        .story-page {
-            display: none;
-            background: #ffffff !important;
-            padding: 30px 25px;
-            border-radius: 25px;
-            max-width: 550px;
-            width: 95%;
-            border: 2px solid #fff0f5;
-            box-shadow: 0 0 25px rgba(255, 79, 136, 0.25), 0 0 50px rgba(255, 182, 193, 0.15);
-            animation: slideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, infiniteAmbientGlow 4s infinite alternate;
-            position: relative;
-            text-align: center;
-            z-index: 2;
-        }
+        #loader p {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
 
-        .story-page.active { display: block; }
+        /* Countdown Timer Styling */
+        .countdown-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(255, 79, 136, 0.05);
+            backdrop-filter: blur(5px);
+        }
 
-        @keyframes infiniteAmbientGlow {
-            0% { box-shadow: 0 0 20px rgba(255, 79, 136, 0.25), 0 0 40px rgba(255, 182, 193, 0.15); }
-            100% { box-shadow: 0 0 35px rgba(255, 79, 136, 0.45), 0 0 60px rgba(255, 105, 180, 0.25); border-color: #ffe3ed; }
-        }
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        /* --- UI Elements Styling --- */
-        .pass-input {
-            padding: 12px 20px;
-            font-size: 18px;
-            border: 2px solid #ff4f88;
-            border-radius: 25px;
-            outline: none;
-            margin-bottom: 15px;
-            text-align: center;
-            width: 80%;
-            max-width: 300px;
-            box-shadow: 0 0 10px rgba(255, 79, 136, 0.1);
-        }
+        .time-num {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4f88;
+        }
 
-        .timer-box {
-            font-size: 32px;
-            font-weight: bold;
-            color: #ff4f88;
-            margin: 20px 0;
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(255, 79, 136, 0.2);
-        }
+        .time-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #666;
+            letter-spacing: 1px;
+        }
 
-        .typing-container {
-            font-size: 24px;
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 25px;
-            border-right: 3px solid #ff4f88;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-        }
+        button.btn-main {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 40px;
+            background: #ff4f88;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 79, 136, .3);
+            transition: .3s;
+        }
 
-        .typing-active {
-            animation: typing 2.5s steps(15) forwards, blink 0.75s step-end infinite;
-        }
+        button.btn-main:hover {
+            transform: scale(1.08);
+            background: #ff2f74;
+        }
 
-        @keyframes typing { from { width: 0; } to { width: 160px; } }
-        @keyframes blink { from, to { border-color: transparent; } 50% { border-color: #ff4f88; } }
+        #main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-        button.btn-main, .btn-hug {
-            padding: 12px 35px;
-            border: none;
-            border-radius: 40px;
-            background: #ff4f88;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(255, 79, 136, 0.4);
-            transition: .3s;
-        }
+        .story-page {
+            display: none;
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 15px 35px rgba(255, 79, 136, 0.1);
+            animation: slideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            position: relative;
+            text-align: center;
+        }
 
-        button.btn-main:hover, .btn-hug:hover {
-            transform: scale(1.05);
-            background: #ff2f74;
-            box-shadow: 0 0 25px rgba(255, 79, 136, 0.7);
-        }
+        .story-page.active {
+            display: block;
+        }
 
-        #main {
-            background: linear-gradient(135deg, #ffd6e8, #ffeef5, #fff8fc) !important;
-        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
 
-        .collage-container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 15px; }
-        .collage-card {
-            background: #ffffff;
-            padding: 12px 10px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(255, 79, 136, 0.1);
-            width: 46%;
-            border: 1px solid #ffe6f0;
-            transition: 0.3s;
-        }
-        .collage-card:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 79, 136, 0.3); border-color: #ff4f88; }
-        .collage-emoji { font-size: 34px; display: block; margin-bottom: 5px; }
-        .collage-label { font-size: 14px; font-weight: bold; color: #ff4f88; display: block; margin-bottom: 4px; }
-        .collage-val { font-size: 14px; color: #666; line-height: 1.4; display: block; }
+        .story-page h1 { font-size: 45px; color: #ff4f88; margin-bottom: 15px; }
+        .story-page h2 { color: #ff4f88; margin-bottom: 20px; font-size: 32px; }
+        .story-page p, .story-page li { font-size: 20px; line-height: 1.8; text-align: justify; }
 
-        .cake-box { display: flex; flex-direction: column; align-items: center; cursor: pointer; margin: 20px 0; }
-        .cake-emoji { font-size: 85px; position: relative; }
-        .candle-flame { position: absolute; top: -10px; left: 30px; font-size: 25px; animation: candleFlicker 0.6s infinite alternate; }
+        .nav-controls {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            z-index: 100;
+        }
 
-        .care-msg-box {
-            display: none;
-            background: #fff0f5;
-            border: 2px dashed #ff4f88;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            box-shadow: 0 0 20px rgba(255, 79, 136, 0.2);
-        }
+        .nav-btn {
+            padding: 10px 25px;
+            border: 2px solid #ff4f88;
+            background: white;
+            color: #ff4f88;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-        .nav-controls { display: flex; gap: 20px; margin-top: 25px; z-index: 100; }
-        .nav-btn { padding: 12px 30px; border: none; background: #ff4f88; color: white; border-radius: 25px; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: 0 0 15px rgba(255, 79, 136, 0.3); transition: 0.3s; }
-        .nav-btn-back { background: #ffffff; color: #ff4f88; border: 2px solid #ff4f88; box-shadow: none; }
+        .nav-btn:hover {
+            background: #ff4f88;
+            color: white;
+            transform: translateY(-2px);
+        }
 
-        .floating-avatar { position: fixed; width: 70px; z-index: 999; pointer-events: none; animation: avatarFloat 4s ease-in-out infinite; border-radius: 12px; display: none; }
-        .stk-left { top: 15%; left: 3%; } .stk-right { bottom: 20%; right: 3%; }
-        @keyframes avatarFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(5deg); } }
+        .collage-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 15px;
+        }
 
-        .heart { position: fixed; color: #ff5b95; font-size: 24px; animation: float 8s linear infinite; pointer-events: none; z-index: 1; }
-        .burst-emoji { position: fixed; font-size: 32px; pointer-events: none; z-index: 9999; animation: explode 0.8s ease-out forwards; }
-        .cracker-particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; z-index: 0; animation: popExplode 1.2s ease-out forwards; }
+        .collage-card {
+            background: #ffffff;
+            padding: 10px 10px 15px 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            width: 45%;
+            max-width: 150px;
+            text-align: center;
+            border: 1px solid #ffe3ed;
+            transform: rotate(var(--r));
+        }
 
-        @keyframes popExplode { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--cx), var(--cy)) scale(0); opacity: 0; } }
-        @keyframes float { 0% { transform: translateY(100vh); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-12vh); opacity: 0; } }
-        @keyframes explode { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--mx), var(--my)) scale(1.4); opacity: 0; } }
-        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-        @keyframes candleFlicker { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-        audio { display: none; }
-    </style>
+        .collage-emoji { font-size: 30px; display: block; }
+        .collage-label { font-size: 13px; font-weight: bold; color: #ff4f88; }
+        .collage-val { font-size: 14px; color: #666; }
+
+        .cake-box { display: flex; flex-direction: column; align-items: center; cursor: pointer; margin: 20px 0; }
+        .cake-emoji { font-size: 80px; position: relative; }
+        .candle-flame { position: absolute; top: -10px; left: 28px; font-size: 25px; animation: candleFlicker 0.6s infinite alternate; }
+
+        @keyframes candleFlicker {
+            0% { transform: scale(1); } 100% { transform: scale(1.1); }
+        }
+
+        .floating-avatar {
+            position: fixed;
+            width: 75px;
+            z-index: 999;
+            pointer-events: none;
+            animation: avatarFloat 4s ease-in-out infinite;
+            border-radius: 12px;
+            display: none;
+        }
+        .stk-left { top: 20%; left: 4%; }
+        .stk-right { bottom: 25%; right: 4%; }
+
+        @keyframes avatarFloat {
+            0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); }
+        }
+
+        .heart {
+            position: fixed;
+            color: #ff5b95;
+            font-size: 24px;
+            animation: float 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .burst-emoji {
+            position: fixed;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: explode 0.8s ease-out forwards;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-12vh); opacity: 0; }
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--mx), var(--my)) scale(1.4); opacity: 0; }
+        }
+
+        @keyframes heartbeat { 50% { transform: scale(1.15); } }
+        audio { display: none; }
+    </style>
 </head>
 <body>
-    <audio id="bgSong" loop>
-        <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
-    </audio>
 
-    <img src="png1.jpg" class="floating-avatar stk-left" alt="Sticker Left">
-    <img src="png2.jpg" class="floating-avatar stk-right" alt="Sticker Right">
+    <audio id="bgSong" loop>
+        <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
+    </audio>
 
-    <!-- Screen 1: Password Gate Box -->
-    <div id="passScreen" style="display: flex;">
-        <h1>🔒 Locked Surprise</h1>
-        <h2 style="font-size:24px; margin: 15px 0 25px; color:#555;">Enter Secret Key to Unlock</h2>
-        <input type="password" id="secretKey" class="pass-input" placeholder="Enter password here...">
-        <button class="btn-main" onclick="verifyPassword()">Unlock Gift 🔑</button>
-        <p id="errorMsg" style="color:red; margin-top:15px; display:none; font-weight:bold;">Incorrect Password! Try again ❤️</p>
-    </div>
+    <img src="png1.jpg" class="floating-avatar stk-left" alt="Sticker Left">
+    <img src="png2.jpg" class="floating-avatar stk-right" alt="Sticker Right">
 
-    <!-- Screen 2: Countdown Gate Box -->
-    <div id="countdownScreen">
-        <h1>⏳ Hold Your Excitement!</h1>
-        <h2 style="font-size:26px; margin: 15px 0; color:#ff4f88;">Your Surprise Unlocks In:</h2>
-        <div class="timer-box" id="clockElement">00d 00h 00m 00s</div>
-        <p style="font-size:18px; color:#666;">Waiting for 12th July... 🎂✨</p>
-    </div>
+    <div id="loader">
+        <h1>💖</h1>
+        <h2>For Someone Very Special...</h2>
+        <p>Dear Mahi ❤️</p>
+        
+        <div class="countdown-container" id="countdownBox">
+            <div class="time-box"><span class="time-num" id="days">00</span><span class="time-label">Days</span></div>
+            <div class="time-box"><span class="time-num" id="hours">00</span><span class="time-label">Hrs</span></div>
+            <div class="time-box"><span class="time-num" id="minutes">00</span><span class="time-label">Mins</span></div>
+            <div class="time-box"><span class="time-num" id="seconds">00</span><span class="time-label">Secs</span></div>
+        </div>
 
-    <!-- Screen 3: Loader Screen Box with Typing Effect -->
-    <div id="loader">
-        <h1>💖</h1>
-        <h2>For Someone Very Special...</h2>
-        <div class="typing-container" id="typeBox">Dear Mahi ❤️</div>
-        <button class="btn-main" onclick="openGift()">🎁 Tap To Open</button>
-    </div>
+        <button class="btn-main" onclick="openGift()">🎁 Tap To Open</button>
+    </div>
 
-    <!-- Screen 4: Main Web Story Deck -->
-    <div id="main">
-        <!-- Page 1: Cake Card -->
-        <div class="story-page active" id="page-1">
-            <h2>✨ Card 1/7 ✨</h2>
-            <div class="cake-box" onclick="handleCakeClick()">
-                <div class="cake-emoji" id="cakeDisplay">
-                    <span class="candle-flame" id="flameElement">🔥</span>
-                    🎂
-                </div>
-                <p style="text-align:center; font-style:italic; font-size:16px; margin-top:15px;" id="cakeStatus">Tap the cake to blow the candle! 🕯️</p>
-            </div>
-        </div>
+    <div id="main" style="display:none;">
 
-        <!-- Page 2: Identity Welcome Header -->
-        <div class="story-page" id="page-2">
-            <h2>✨ Card 2/7 ✨</h2>
-            <h1 style="font-size:36px; margin-bottom:20px; text-align:center;">🎂 Happy Birthday Mahi ❤️</h1>
-            <p style="text-align:center; font-size:22px; width:100%;">12 July...<br><br>The day the world got someone truly beautiful, pure, and absolutely unique. ✨🌸</p>
-        </div>
+        <div class="story-page active" id="page-1">
+            <h1>✨ Card 1/6 ✨</h1>
+            <div class="cake-box" onclick="handleCakeClick()">
+                <div class="cake-emoji" id="cakeDisplay">
+                    <span class="candle-flame" id="flameElement">🔥</span>
+                    🎂
+                </div>
+                <p style="text-align:center; font-style:italic; font-size:16px; margin-top:10px;" id="cakeStatus">Tap the cake to blow the candle! 🕯️</p>
+            </div>
+        </div>
 
-        <!-- Page 3: Personal Letter Box -->
-        <div class="story-page" id="page-3">
-            <h2>✨ Card 3/7 ✨</h2>
-            <h2 style="font-size:26px; text-align:center;">💌 A Piece of My Heart For You</h2>
-            <p>
-                Dear Mahi,<br><br>
-                November 2024... Pata hi nahi chala kab tum meri life ka itna important aur sabse pyaara hissa ban gayi. Tum meri har khushi ki wajah ho.<br><br>
-                Tumhe haste hue dekhna aur tumhare sapno ke liye tumhara dedication dekhna mujhe behad sukoon deta hai. Main dil se chahta hoon ki ek din tum apna har ek sapna zaroor poora karo aur vo sb kro jo tum chahti ho hmesha khush rho. Chahe kitni bhi mushkileein kyun na aayein... please kabhi haar mat manna, kyunki tumhara har ek sapna poora hone ke liye hi bana hai. Main har pal tumhari kamyabi aur muskurahat ke liye pray karunga. ❤️
-            </p>
-        </div>
+        <div class="story-page" id="page-2">
+            <h2>✨ Card 2/6 ✨</h2>
+            <h1 style="font-size:40px; margin-bottom:20px;">🎂 Happy Birthday Mahi ❤️</h1>
+            <p style="text-align:center; font-size:24px;">12 July...<br><br>The day the world got someone truly beautiful, pure, and absolutely unique. ✨🌸</p>
+        </div>
 
-        <!-- Page 4: Polaroid Collage Grid fixed -->
-        <div class="story-page" id="page-4">
-            <h2>✨ Card 4/7 ✨</h2>
-            <div style="text-align:center; margin-bottom: 15px;">
-                <img src="png3.jpg" style="width: 75px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Favorite Sticker">
-            </div>
-            <h2 style="font-size:26px; text-align:center;">🌸 Your Favourite Things</h2>
-            <div class="collage-container">
-                <div class="collage-card"><span class="collage-emoji">🍲</span><span class="collage-label">Dishes:</span><span class="collage-val">Chole Bhature, Pasta</span></div>
-                <div class="collage-card"><span class="collage-emoji">🥟</span><span class="collage-label">Street Food:</span><span class="collage-val">Momos ❤️</span></div>
-                <div class="collage-card"><span class="collage-emoji">🍕</span><span class="collage-label">Pizza:</span><span class="collage-val">Margherita</span></div>
-                <div class="collage-card"><span class="collage-emoji">🏸</span><span class="collage-label">Sport:</span><span class="collage-val">Badminton</span></div>
-                <div class="collage-card"><span class="collage-emoji">🌧️</span><span class="collage-label">Season:</span><span class="collage-val">Monsoon</span></div>
-                <div class="collage-card"><span class="collage-emoji">🌿</span><span class="collage-label">Vibe:</span><span class="collage-val">Greenery & Peace</span></div>
-            </div>
-        </div>
+        <div class="story-page" id="page-3">
+            <h2>✨ Card 3/6 ✨</h2>
+            <h2 style="font-size:28px;">💌 A Piece of My Heart For You</h2>
+            <p>
+                Dear Mahi,<br><br>
+                November 2024... Pata hi nahi chala kab tum meri life ka itna important aur sabse pyaara hissa ban gayi. Tum meri har khushi ki wajah ho.<br><br>
+                Tumhe haste hue dekhna aur tumhare sapno ke liye tumhara dedication dekhna mujhe behad sukoon deta hai. Main dil se chahta hoon ki ek din tum apna har ek sapna zaroor poora karo aur vo sb kro jo tum chahti ho hmesha khush rho. Chahe kitni bhi mushkileein kyun na aayein... please kabhi haar mat manna, kyunki tumhara har ek sapna poora hone ke liye hi bana hai. Main har pal tumhari kamyabi aur muskurahat ke liye pray karunga. ❤️
+            </p>
+        </div>
 
-        <!-- Page 5: Believe in Dreams Box -->
-        <div class="story-page" id="page-5">
-            <h2>✨ Card 5/7 ✨</h2>
-            <h2 style="font-size:26px; text-align:center;">📚 Believe In Your Dream Job ❤️</h2>
-            <p>
-                I know one day you'll conquer the world, step into your dream job, and become a fiercely independent woman. I believe in your strength, your focus, and every single dream you hold close to your heart. Keep working hard, keep smiling, and never doubt how incredible you are. I'll always be standing by your side, immensely proud of you at every step. ❤️
-            </p>
-        </div>
+        <div class="story-page" id="page-4">
+            <h2>✨ Card 4/6 ✨</h2>
+            <div style="text-align:center; margin-bottom: 10px;">
+                <img src="png3.jpg" style="width: 75px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Favorite Sticker">
+            </div>
+            <h2>🌸 Your Favourite Things</h2>
+            <div class="collage-container">
+                <div class="collage-card" style="--r: -3deg;"><span class="collage-emoji">🍲</span><span class="collage-label">Dishes</span><span class="collage-val">Chole Bhature, Dosa</span></div>
+                <div class="collage-card" style="--r: 2deg;"><span class="collage-emoji">🥟</span><span class="collage-label">Street Food</span><span class="collage-val">Momos ❤️</span></div>
+                <div class="collage-card" style="--r: -2deg;"><span class="collage-emoji">🍕</span><span class="collage-label">Pizza</span><span class="collage-val">Margherita</span></div>
+                <div class="collage-card" style="--r: 4deg;"><span class="collage-emoji">🏸</span><span class="collage-label">Sport</span><span class="collage-val">Badminton</span></div>
+                <div class="collage-card" style="--r: -4deg;"><span class="collage-emoji">🌧️</span><span class="collage-label">Season</span><span class="collage-val">Monsoon</span></div>
+                <div class="collage-card" style="--r: 3deg;"><span class="collage-emoji">🌿</span><span class="collage-label">Vibe</span><span class="collage-val">Greenery & Peace</span></div>
+            </div>
+        </div>
 
-        <!-- Page 6: Deep Wishes & Flower Bouquet -->
-        <div class="story-page" id="page-6">
-            <h2>✨ Card 6/7 ✨</h2>
-            <h2 style="font-size:26px; text-align:center;">💝 My Warmest Wishes For You</h2>
-            <div style="font-size: 55px; margin-bottom: 15px; text-align:center;">💐</div>
-            <p>
-                Happy Birthday to the person who holds the most special place in my heart. You are the sweetest human I’ve ever known my golumolu, my kuchupuchu. You make my world brighter just by being in it. Stay exactly the way you are, always. I’m so lucky to have you. May this beautiful year bring you closer to all your goals, unlock new milestones, and fill your life with the boundless happiness you truly deserve. Keep shining bright, always! ❤️
-            </p>
-            <p style="text-align:right; font-weight:bold; margin-top:25px; color:#ff4f88; width:100%;">— ❤️ Manish ❤️</p>
-        </div>
+        <div class="story-page" id="page-5">
+            <h2>✨ Card 5/6 ✨</h2>
+            <h2>📚 Believe In Your Dream Job ❤️</h2>
+            <p>
+                I know one day you'll conquer the world, step into your dream job, and become a fiercely independent woman. I believe in your strength, your focus, and every single dream you hold close to your heart. Keep working hard, keep smiling, and never doubt how incredible you are. I'll always be standing by your side, immensely proud of you at every step. ❤️
+            </p>
+        </div>
 
-        <!-- Page 7: Interactive Hug Box -->
-        <div class="story-page" id="page-7">
-            <h2>✨ Card 7/7 ✨</h2>
-            <h2 style="font-size:26px; text-align:center;">🤗 A Final Surprise For You</h2>
-            <div class="interactive-hug-zone">
-                <button class="btn-hug" id="hugActionBtn" onclick="handleHugClick()">👉 Tap Here 👈</button>
-                <div class="care-msg-box" id="careMessageBox">
-                    <div style="font-size: 50px; animation: heartbeat 1.2s infinite; margin-bottom: 10px;">🤗❤️🤗</div>
-                    <p style="font-size: 20px; line-height: 1.6; color: #ff4f88; font-weight: bold; text-align: center;">
-                        Take care of your health and of yourself. Long live Mahi! Have a beautiful and healthy life, my sweetie! ✨💖
-                    </p>
-                </div>
-            </div>
-        </div>
+        <div class="story-page" id="page-6">
+            <h2>✨ Card 6/6 ✨</h2>
+            <h2>💝 My Warmest Wishes For You</h2>
+            <div style="font-size: 60px; margin-bottom: 15px;">💐</div>
+            <p>
+                Happy Birthday to the person who holds the most special place in my heart. You are the sweetest human I’ve ever known my golumolu, my kuchupuchu. You make my world brighter just by being in it. Stay exactly the way you are, always. I’m so lucky to have you. May this beautiful year bring you closer to all your goals, unlock new milestones, and fill your life with the boundless happiness you truly deserve. Keep shining bright, always! ❤️
+            </p>
+            <p style="text-align:right; font-weight:bold; margin-top:25px; color:#ff4f88;">— ❤️ Manish ❤️</p>
+        </div>
 
-        <div class="nav-controls">
-            <button class="nav-btn nav-btn-back" id="prevBtn" onclick="changePage(-1)" style="visibility:hidden;">⬅️ Back</button>
-            <button class="nav-btn" id="nextBtn" onclick="changePage(1)">Next ➡️</button>
-        </div>
-    </div>
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" onclick="changePage(-1)" style="visibility:hidden;">⬅️ Back</button>
+            <button class="nav-btn" id="nextBtn" onclick="changePage(1)">Next ➡️</button>
+        </div>
 
-    <script>
-        let currentPage = 1;
-        const totalPages = 7;
-        let crackerInterval;
-        let countdownInterval;
+    </div>
 
-        // 1. Password Verification Logic
-        function verifyPassword() {
-            const userInput = document.getElementById("secretKey").value;
-            // Set password as 'mahi12' (you can change it here)
-            if (userInput.toLowerCase() === "mahi12") {
-                document.getElementById("passScreen").style.display = "none";
-                startCountdownSystem();
-            } else {
-                document.getElementById("errorMsg").style.display = "block";
-            }
-        }
+    <script>
+        let currentPage = 1;
+        const totalPages = 6;
+        let cakeState = 0; 
+        let isBirthdayArrived = false;
 
-        // 2. Countdown Timer Logic (Targets 12 July 2026 00:00:00)
-        function startCountdownSystem() {
-            const targetDate = new Date("July 12, 2026 00:00:00").getTime();
-            
-            function updateClock() {
-                const now = new Date().getTime();
-                const diff = targetDate - now;
+        // TARGET DATE: 12 July (Year automatically calculated dynamically based on current runtime)
+        const currentYear = new Date().getFullYear();
+        const targetDate = new Date(`July 12, ${currentYear} 00:00:00`).getTime();
 
-                if (diff <= 0) {
-                    clearInterval(countdownInterval);
-                    document.getElementById("countdownScreen").style.display = "none";
-                    document.getElementById("loader").style.display = "flex";
-                    document.getElementById("typeBox").classList.add("typing-active");
-                } else {
-                    document.getElementById("countdownScreen").style.display = "flex";
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                    document.getElementById("clockElement").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-                }
-            }
-            updateClock();
-            countdownInterval = setInterval(updateClock, 1000);
-        }
+        // Countdown System Logic
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
 
-        function openGift() {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("main").style.display = "flex";
-            document.querySelectorAll('.floating-avatar').forEach(stk => stk.style.display = 'block');
-            
-            const audio = document.getElementById("bgSong");
-            if (audio) audio.play().catch(e => console.log("Audio triggered safely"));
-            
-            triggerEmojiExplosion(false, false);
-            crackerInterval = setInterval(launchBackgroundCracker, 600);
-        }
+            if (difference <= 0) {
+                clearInterval(countdownInterval);
+                isBirthdayArrived = true;
+                document.getElementById("countdownBox").innerHTML = "<p style='color:#ff4f88; font-weight:bold; font-size:20px; animation: heartbeat 1s infinite;'>🎉 The Big Day Is Finally Here! 🥳</p>";
+                return;
+            }
 
-        function changePage(direction) {
-            if(currentPage === 1 && direction === 1) clearInterval(crackerInterval);
-            document.getElementById(`page-${currentPage}`).classList.remove("active");
-            currentPage += direction;
-            
-            if(currentPage === 1) {
-                clearInterval(crackerInterval);
-                crackerInterval = setInterval(launchBackgroundCracker, 600);
-            }
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
 
-            if (currentPage > totalPages) {
-                currentPage = totalPages;
-                document.getElementById(`page-${currentPage}`).classList.add("active");
-                for(let i=0; i<4; i++) setTimeout(() => triggerEmojiExplosion(true, false), i*250);
-                return;
-            }
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+        }, 1000);
 
-            document.getElementById(`page-${currentPage}`).classList.add("active");
-            document.getElementById("prevBtn").style.visibility = currentPage === 1 ? "hidden" : "visible";
-            document.getElementById("nextBtn").innerHTML = currentPage === totalPages ? "Finish 🎉" : "Next ➡️";
-            triggerEmojiExplosion(false, false);
-        }
+        function openGift() {
+            // PASSWORDS CONFIGURATION
+            const BYPASS_PASSWORD = "manish123"; // Apka Secret Code
+            const MAHI_PASSWORD = "mahi12";     // Mahi ka Code
 
-        function launchBackgroundCracker() {
-            if(currentPage !== 1) return;
-            const colors = ["#ff4f88", "#ffb6c1", "#ffd700", "#ffffff", "#ff6b6b"];
-            const startX = Math.random() * 90 + 5;
-            const startY = Math.random() * 50 + 15;
-            
-            for(let i=0; i<18; i++) {
-                const p = document.createElement("div");
-                p.className = "cracker-particle";
-                p.style.left = startX + "vw"; p.style.top = startY + "vh";
-                p.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                const angle = (i / 18) * 2 * Math.PI;
-                const distance = 60 + Math.random() * 70;
-                p.style.setProperty('--cx', Math.cos(angle) * distance + "px");
-                p.style.setProperty('--cy', Math.sin(angle) * distance + "px");
-                
-                document.getElementById("main").appendChild(p);
-                setTimeout(() => p.remove(), 1200);
-            }
-        }
+            const userPass = prompt("Enter the Secret Unlock Code Key 🔐:");
+            
+            if (userPass === null) return; // User cleared/canceled popup
 
-        function handleHugClick() {
-            for(let i=0; i<3; i++) setTimeout(() => triggerEmojiExplosion(false, true), i*200);
-            document.getElementById("careMessageBox").style.display = "block";
-            document.getElementById("hugActionBtn").style.display = "none";
-        }
+            // 1. Bypass Logic check
+            if (userPass === BYPASS_PASSWORD) {
+                alert("Welcome Manish! Bypass Access Granted. 😉❤️");
+                unlockWebsite();
+                return;
+            }
 
-        function triggerEmojiExplosion(isFlowerEnd, isHugClick) {
-            const standard = ["🌸", "✨", "💖", "🎈", "🥳", "🍬", "🦋", "🦄"];
-            const flowers = ["🌸", "🌹", "🌻", "🌼", "💐", "🌺", "🌷", "💝"];
-            const hugs = ["🤗", "🤗", "💖", "❤️", "🌸", "✨"];
-            let pool = standard;
-            if (isFlowerEnd) pool = flowers;
-            if (isHugClick) pool = hugs;
-            
-            for (let i = 0; i < 25; i++) {
-                const emo = document.createElement("div");
-                emo.className = "burst-emoji";
-                emo.innerHTML = pool[Math.floor(Math.random() * pool.length)];
-                emo.style.left = "50vw"; emo.style.top = "50vh";
-                
-                const mx = (Math.random() - 0.5) * 350 + "px";
-                const my = (Math.random() - 0.5) * 350 + "px";
-                emo.style.setProperty('--mx', mx); emo.style.setProperty('--my', my);
-                
-                document.body.appendChild(emo);
-                setTimeout(() => emo.remove(), 800);
-            }
-        }
+            // 2. Main Logic Engine
+            if (isBirthdayArrived) {
+                if (userPass === MAHI_PASSWORD) {
+                    alert("Correct Code! Happy Birthday Mahi! 🎉🎂💖");
+                    unlockWebsite();
+                } else {
+                    alert("Oops! Galat password hai, ek baar check karo! ❌");
+                }
+            } else {
+                // If it's early and code is wrong or she types her own code too early
+                if(userPass === MAHI_PASSWORD) {
+                    alert("Ahaan! Sabr ka phal meetha hota hai golumolu! Itna jaldi nahi, 12 baje ka wait karo! 😉⏳");
+                } else {
+                    alert("The Gift is locked tightly! It will unlock precisely at midnight 12 July! 🔒⏳");
+                }
+            }
+        }
 
-        let cakeState = 0; 
-        function handleCakeClick() {
-            const flame = document.getElementById("flameElement");
-            const status = document.getElementById("cakeStatus");
-            const display = document.getElementById("cakeDisplay");
+        function unlockWebsite() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("main").style.display = "flex";
+            
+            const avatars = document.querySelectorAll('.floating-avatar');
+            avatars.forEach(avatar => avatar.style.display = 'block');
+            
+            const audio = document.getElementById("bgSong");
+            if (audio) {
+                audio.play().catch(err => console.log("System verified background sound"));
+            }
+            triggerEmojiExplosion(false);
+        }
 
-            if (cakeState === 0) {
-                if(flame) flame.style.display = "none";
-                status.innerHTML = "Candle blown successfully! Now tap again to cut the cake! 🔪";
-                cakeState = 1; triggerEmojiExplosion(false, false);
-                for(let i=0; i<3; i++) setTimeout(launchBackgroundCracker, i*150);
-            } else if (cakeState === 1) {
-                display.innerHTML = "🍰✨"; 
-                status.innerHTML = "Cake Cut Successfully! Yayyy! Happy Birthday Mahi! 🎉❤️";
-                status.style.color = "#ff4f88"; status.style.fontWeight = "bold";
-                cakeState = 2; triggerEmojiExplosion(false, false);
-                for(let i=0; i<3; i++) setTimeout(launchBackgroundCracker, i*150);
-            }
-        }
+        function changePage(direction) {
+            document.getElementById(`page-${currentPage}`).classList.remove("active");
+            currentPage += direction;
+            
+            if (currentPage > totalPages) {
+                currentPage = totalPages;
+                document.getElementById(`page-${currentPage}`).classList.add("active");
+                for(let i=0; i<4; i++) {
+                    setTimeout(() => triggerEmojiExplosion(true), i*250);
+                }
+                return;
+            }
 
-        setInterval(() => {
-            const heart = document.createElement("div");
-            heart.className = "heart"; heart.innerHTML = "💖";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (15 + Math.random() * 25) + "px";
-            heart.style.animationDuration = (6 + Math.random() * 4) + "s";
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 8000);
-        }, 400);
-    </script>
+            document.getElementById(`page-${currentPage}`).classList.add("active");
+            document.getElementById("prevBtn").style.visibility = currentPage === 1 ? "hidden" : "visible";
+            document.getElementById("nextBtn").innerHTML = currentPage === totalPages ? "Finish 🎉" : "Next ➡️";
+            
+            triggerEmojiExplosion(false);
+        }
+
+        function triggerEmojiExplosion(isFlowerEnd) {
+            const standardEmojis = ["🌸", "✨", "💖", "🎈", "🥳", "🍬", "🦋", "🦄"];
+            const flowerEmojis = ["🌸", "🌹", "🌻", "🌼", "💐", "🌺", "🌷", "💝"];
+            const activePool = isFlowerEnd ? flowerEmojis : standardEmojis;
+            const totalCount = isFlowerEnd ? 25 : 15;
+            
+            for (let i = 0; i < totalCount; i++) {
+                const emo = document.createElement("div");
+                emo.className = "burst-emoji";
+                emo.innerHTML = activePool[Math.floor(Math.random() * activePool.length)];
+                emo.style.left = "50vw";
+                emo.style.top = "50vh";
+                
+                const mx = (Math.random() - 0.5) * 350 + "px";
+                const my = (Math.random() - 0.5) * 350 + "px";
+                emo.style.setProperty('--mx', mx);
+                emo.style.setProperty('--my', my);
+                
+                document.body.appendChild(emo);
+                setTimeout(() => emo.remove(), 800);
+            }
+        }
+
+        function handleCakeClick() {
+            const flame = document.getElementById("flameElement");
+            const status = document.getElementById("cakeStatus");
+            const display = document.getElementById("cakeDisplay");
+
+            if (cakeState === 0) {
+                if(flame) flame.style.display = "none";
+                status.innerHTML = "Candle blown successfully! Now tap again to cut the cake! 🔪";
+                cakeState = 1;
+                triggerEmojiExplosion(false);
+            } else if (cakeState === 1) {
+                display.innerHTML = '<span class="candle-flame" id="flameElement" style="display:none;">🔥</span>🍰✨'; 
+                status.innerHTML = "Cake Cut Successfully! Yayyy! Happy Birthday Mahi! 🎉❤️";
+                status.style.color = "#ff4f88";
+                status.style.fontWeight = "bold";
+                cakeState = 2;
+                triggerEmojiExplosion(false);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (15 + Math.random() * 25) + "px";
+            heart.style.animationDuration = (6 + Math.random() * 4) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 8000);
+        }
+        setInterval(createHeart, 400);
+    </script>
 </body>
 </html>
