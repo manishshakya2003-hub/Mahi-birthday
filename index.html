@@ -5,13 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Mahi ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Strict Background Override to fix the Black issue */
+        body {
+            background: #fff5f8 !important; /* Perfect Soft Pastel Pink/Cream Tone */
+        }
+
+        /* Floating Avatar Stickers from your repository */
+        .floating-avatar {
+            position: fixed;
+            width: 75px;
+            height: auto;
+            z-index: 999;
+            pointer-events: none;
+            animation: avatarFloat 4s ease-in-out infinite;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(255, 79, 136, 0.15);
+            display: none;
+        }
+        .stk-left { top: 20%; left: 4%; }
+        .stk-right { bottom: 25%; right: 4%; }
+
+        @keyframes avatarFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        /* --- Beautiful Pastel Collage / Polaroid Grid Layout --- */
+        .collage-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .collage-card {
+            background: #ffffff;
+            padding: 12px 12px 20px 12px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            width: 42%;
+            max-width: 180px;
+            text-align: center;
+            border: 1px solid #ffe3ed;
+            transform: rotate(var(--r));
+            transition: 0.3s ease;
+        }
+
+        .collage-card:hover {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 10;
+            box-shadow: 0 8px 20px rgba(255, 79, 136, 0.15);
+        }
+
+        .collage-emoji {
+            font-size: 35px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .collage-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ff4f88;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .collage-val {
+            font-size: 15px;
+            color: #555;
+        }
+
+        /* Interactive Cake System styling */
+        .cake-card { text-align: center; background: white; }
+        .cake-box { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        .cake-emoji { font-size: 75px; position: relative; display: inline-block; }
+        .candle-flame { position: absolute; top: -10px; left: 27px; font-size: 25px; animation: candleFlicker 0.6s infinite alternate; }
+
+        @keyframes candleFlicker {
+            0% { transform: scale(1); opacity: 0.9; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .instruction-text { font-size: 18px; color: #666; margin-top: 10px; font-style: italic; }
+
+        .lbsnaa-badge {
+            background: rgba(255, 79, 136, 0.08);
+            border-left: 4px solid #ff4f88;
+            padding: 15px;
+            font-weight: bold;
+            color: #ff4f88;
+            text-align: center;
+            border-radius: 6px;
+            margin-top: 25px;
+            font-size: 20px;
+        }
+
+        audio { display: none; }
+    </style>
 </head>
 <body>
 
+    <!-- Background Music Element -->
     <audio id="bgSong" loop>
         <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Floating Avatar Images from repository -->
     <img src="png1.jpg" class="floating-avatar stk-left" alt="Sticker Left">
     <img src="png2.jpg" class="floating-avatar stk-right" alt="Sticker Right">
 
@@ -24,6 +126,7 @@
 
     <div id="main" style="display:none;">
 
+        <!-- Section 1: Interactive Cake Cutting -->
         <section class="card cake-card">
             <div class="cake-box" id="cakeContainer" onclick="handleCakeClick()">
                 <div class="cake-emoji" id="cakeDisplay">
@@ -40,45 +143,65 @@
         </section>
 
         <section class="card">
-            <h2>💌 A Letter From Manish</h2>
+            <h2>💌 A Piece of My Heart For You</h2>
             <p>
                 Dear Mahi,<br><br>
-                November 2024...<br>
-                Pata hi nahi chala kab tum meri life ka itna important part ban gayi.<br><br>
-                Tum sirf meri girlfriend nahi ho. Tum meri smile ho. Meri dua ho. Aur meri motivation ho. Mujhe tum par bahut proud feel hota hai ki tum UPSC ki preparation kar rahi ho. Main dil se dua karta hoon ki ek din tum apna sapna zaroor pura karo. Chahe kitni bhi mushkile aaye... Please kabhi give up mat karna. Main hamesha tumhare liye pray karunga. ❤️
+                November 2024... Pata hi nahi chala kab tum meri life ka itna important aur sabse pyaara hissa ban gayi. Tum sirf ek naam nahi ho mere liye, tum meri har khushi ki wajah ho, meri har dua ka asar ho, aur meri sabse badi motivation ho.<br><br>
+                Tumhe haste hue dekhna aur tumhare sapno ke liye tumhara dedication dekhna mujhe behad sukoon deta hai. Main dil se dua karta hoon ki ek din tum apna har ek sapna zaroor poora karo aur aasmaan ki bulandiyo ko chuo. Chahe raahon mein kitni bhi mushkileein kyun na aayein... please kabhi haar mat manna, kyunki tumhara har ek sapna poora hone ke liye hi bana hai. Main har pal tumhari kamyabi aur muskurahat ke liye pray karunga. ❤️
             </p>
         </section>
 
+        <!-- Section 3: Beautiful Polaroid Collage Layout -->
         <section class="card">
             <div style="text-align:center; margin-bottom: 15px;">
                 <img src="png3.jpg" style="width: 80px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" alt="Favorite Sticker">
             </div>
             <h2>🌸 Your Favourite Things</h2>
-            <ul>
-                <li>💚 Pastel Colours</li>
-                <li>🥟 Momos</li>
-                <li>🍝 Pasta</li>
-                <li>🍕 Margherita Pizza</li>
-                <li>🥘 Chole Bhature</li>
-                <li>🥞 Dosa</li>
-                <li>🌧 Monsoon</li>
-                <li>🏸 Badminton</li>
-                <li>🎶 Lapataa</li>
-                <li>🌿 Greenery & Peace</li>
-            </ul>
+
+            <div class="collage-container">
+                <div class="collage-card" style="--r: -3deg;">
+                    <span class="collage-emoji">🍲</span>
+                    <span class="collage-label">Dishes</span>
+                    <span class="collage-val">Chole Bhature, Pasta, Dosa</span>
+                </div>
+                <div class="collage-card" style="--r: 2deg;">
+                    <span class="collage-emoji">🥟</span>
+                    <span class="collage-label">Street Food</span>
+                    <span class="collage-val">Momos ❤️</span>
+                </div>
+                <div class="collage-card" style="--r: -2deg;">
+                    <span class="collage-emoji">🍕</span>
+                    <span class="collage-label">Pizza</span>
+                    <span class="collage-val">Margherita</span>
+                </div>
+                <div class="collage-card" style="--r: 4deg;">
+                    <span class="collage-emoji">🏸</span>
+                    <span class="collage-label">Sport</span>
+                    <span class="collage-val">Badminton</span>
+                </div>
+                <div class="collage-card" style="--r: -4deg;">
+                    <span class="collage-emoji">🌧️</span>
+                    <span class="collage-label">Season</span>
+                    <span class="collage-val">Monsoon</span>
+                </div>
+                <div class="collage-card" style="--r: 3deg;">
+                    <span class="collage-emoji">🌿</span>
+                    <span class="collage-label">Vibe</span>
+                    <span class="collage-val">Greenery & Peace</span>
+                </div>
+            </div>
         </section>
 
         <section class="card">
-            <h2>📚 Future IAS Officer ❤️</h2>
+            <h2>📚 Believe In Your Dream Job ❤️</h2>
             <p>
-                I know one day you'll become an independent woman.<br>
-                I believe in your dreams.<br>
-                Keep studying.<br>
-                Keep smiling.<br>
-                I'll always be proud of you. ❤️
+                I know one day you'll conquer the world, step into your dream job, and become a fiercely independent woman.
+                I believe in your strength, your focus, and every single dream you hold close to your heart.
+                Keep working hard, keep smiling, and never doubt how incredible you are.
+                I'll always be standing by your side, immensely proud of you at every step. ❤️
             </p>
             <div class="lbsnaa-badge">
-                🏛️ LBSNAA is waiting for you, Future IAS! 💼
+                🏛️ LBSNAA is waiting for you, Future Officer! 💼
             </div>
         </section>
 
@@ -87,7 +210,8 @@
             <p>
                 Distance can stop hugs.<br>
                 Distance can stop hand holding.<br>
-                But it can never stop someone from loving you.<br><br>
+                But it can never stop someone from loving you and wishing the absolute best for you.<br><br>
+                Happy Birthday to the person who holds the most special place in my heart. You are the sweetest human I’ve ever known—my golumolu, my kuchupuchu. You make my world brighter just by being in it. Stay exactly the way you are, always. I’m so lucky to have you. May this beautiful year bring you closer to all your goals, unlock new milestones, and fill your life with the boundless happiness you truly deserve. Keep shining bright, always! ❤️<br><br>
                 Happy Birthday Mahi.<br>
                 Forever Yours,<br><br>
                 <strong>❤️ Manish ❤️</strong>
