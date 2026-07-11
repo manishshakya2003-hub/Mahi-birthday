@@ -228,13 +228,15 @@
     </style>
 </head>
 <body>
-<audio id="bgSong" loop>
+
+    <audio id="bgSong" loop>
         <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
     </audio>
 
     <img src="png1.jpg" class="floating-avatar stk-left" alt="Avatar Asset 1">
     <img src="png2.jpg" class="floating-avatar stk-right" alt="Avatar Asset 2">
 
+    <!-- Screen 1: Password Gateway -->
     <div id="passScreen">
         <h1 style="font-size: 45px; color: #ff4f88; margin-bottom: 10px;">🔒 Locked Surprise</h1>
         <h2 style="font-size:24px; margin-bottom: 25px; color:#555;">Enter Secret Key to Unlock</h2>
@@ -243,6 +245,7 @@
         <p id="errorMsg" style="color:red; margin-top:15px; display:none; font-weight:bold;">Incorrect Password! Try again ❤️</p>
     </div>
 
+    <!-- Screen 2: Countdown Window -->
     <div id="countdownScreen">
         <h1 style="font-size: 45px; color: #ff4f88;">⏳ Hold Your Excitement!</h1>
         <h2 style="font-size:26px; margin: 15px 0; color:#ff4f88;">Your Surprise Unlocks In:</h2>
@@ -250,6 +253,7 @@
         <p style="font-size:18px; color:#666;">Waiting for 12th July... 🎂✨</p>
     </div>
 
+    <!-- Screen 3: Main Greetings Opener -->
     <div id="loader">
         <h1 style="font-size: 80px; margin-bottom: 10px;">💖</h1>
         <h2 style="font-size: 42px; color: #ff4f88; margin: 15px 0;">For Someone Very Special...</h2>
@@ -257,9 +261,11 @@
         <button class="btn-main" onclick="openGift()">🎁 Tap To Open</button>
     </div>
 
+    <!-- Screen 4: Application Content Framework (7 Cards) -->
     <div id="main">
+        <!-- Page 1: Cake Introduction Component -->
         <div class="story-page active" id="page-1">
-            <h2>✨ Card 1/6 ✨</h2>
+            <h2>✨ Card 1/7 ✨</h2>
             <div class="cake-box" onclick="handleCakeClick()">
                 <div class="cake-emoji" id="cakeDisplay">
                     <span class="candle-flame" id="flameElement">🔥</span>
@@ -269,14 +275,16 @@
             </div>
         </div>
 
+        <!-- Page 2: Identity Welcome Module -->
         <div class="story-page" id="page-2">
-            <h2>✨ Card 2/6 ✨</h2>
+            <h2>✨ Card 2/7 ✨</h2>
             <h1 style="font-size:45px; color: #ff4f88; margin-bottom: 25px;">🎂 Happy Birthday Mahi ❤️</h1>
             <p style="font-size: 22px; line-height: 1.9; text-align: center; color: #555;">12 July...<br><br>The day the world got someone truly beautiful, pure, and absolutely unique. ✨🌸</p>
         </div>
 
+        <!-- Page 3: Personal Letter Layout Block -->
         <div class="story-page" id="page-3">
-            <h2>✨ Card 3/6 ✨</h2>
+            <h2>✨ Card 3/7 ✨</h2>
             <h2 style="font-size:32px; color: #ff4f88; margin-bottom: 20px;">💌 A Piece of My Heart For You</h2>
             <p>
                 Dear Mahi,<br><br>
@@ -285,8 +293,9 @@
             </p>
         </div>
 
+        <!-- Page 4: Polaroid Favourites Grid Box -->
         <div class="story-page" id="page-4">
-            <h2>✨ Card 4/6 ✨</h2>
+            <h2>✨ Card 4/7 ✨</h2>
             <div style="text-align:center; margin-bottom: 20px;">
                 <img src="png3.jpg" style="width: 80px; height: auto; border-radius: 10px;" alt="Sticker Center Grid">
             </div>
@@ -301,16 +310,18 @@
             </div>
         </div>
 
+        <!-- Page 5: Career Independent Dreams Segment -->
         <div class="story-page" id="page-5">
-            <h2>✨ Card 5/6 ✨</h2>
+            <h2>✨ Card 5/7 ✨</h2>
             <h2 style="font-size:32px; color: #ff4f88; margin-bottom: 20px;">📚 Believe In Your Dream Job ❤️</h2>
             <p>
                 I know one day you'll conquer the world, step into your dream job, and become a fiercely independent woman. I believe in your strength, your focus, and every single dream you hold close to your heart. Keep working hard, keep smiling, and never doubt how incredible you are. I'll always be standing by your side, immensely proud of you at every step. ❤️
             </p>
         </div>
 
+        <!-- Page 6: Nicknames and Deep Wishes Finale Module -->
         <div class="story-page" id="page-6">
-            <h2>✨ Card 6/6 ✨</h2>
+            <h2>✨ Card 6/7 ✨</h2>
             <h2 style="font-size:32px; color: #ff4f88; margin-bottom: 20px;">💝 My Warmest Wishes For You</h2>
             <div style="font-size: 60px; margin-bottom: 20px; text-align: center;">💐</div>
             <p>
@@ -319,15 +330,28 @@
             <p style="text-align:right; font-weight:bold; margin-top:30px; color:#ff4f88; font-size: 22px; width: 100%;">— ❤️ Manish ❤️</p>
         </div>
 
+        <!-- Page 7: Special Surprise & Pop-up Hug Module -->
+        <div class="story-page" id="page-7">
+            <h2>✨ Card 7/7 ✨</h2>
+            <h2 style="font-size:32px; color: #ff4f88; margin-bottom: 15px;">🤗 Special Surprise For You 🤗</h2>
+            <div style="background: #fff0f5; border: 2px dashed #ff4f88; padding: 25px; border-radius: 20px; box-shadow: 0 0 20px rgba(255, 79, 136, 0.2);">
+                <p style="font-size: 21px; line-height: 1.8; text-align: center; font-weight: bold; color: #ff4f88; margin: 0;">
+                    "Your health and happiness mean everything to me. Keep smiling and take care of yourself. Wishing you the most beautiful and healthy life ahead, my sweetie! ✨❤️"
+                </p>
+            </div>
+        </div>
+
+        <!-- Controls Block -->
         <div class="nav-controls">
             <button class="nav-btn nav-btn-back" id="prevBtn" onclick="changePage(-1)" style="visibility:hidden;">⬅️ Back</button>
             <button class="nav-btn" id="nextBtn" onclick="changePage(1)">Next ➡️</button>
         </div>
     </div>
 
+    <!-- --- Core Mechanical Scripts Logic Nodes --- -->
     <script>
         let currentPage = 1;
-        const totalPages = 6;
+        const totalPages = 7;
         let countdownInterval;
 
         window.onload = function() {
@@ -407,7 +431,28 @@
             document.getElementById("prevBtn").style.visibility = currentPage === 1 ? "hidden" : "visible";
             document.getElementById("nextBtn").innerHTML = currentPage === totalPages ? "Finish 🎉" : "Next ➡️";
             
-            triggerEmojiExplosion();
+            if (currentPage === 7) {
+                const hugPool = ["🤗", "❤️", "💖", "✨", "🌸", "🤗", "💝"];
+                for (let i = 0; i < 35; i++) {
+                    setTimeout(() => {
+                        const emo = document.createElement("div");
+                        emo.className = "burst-emoji";
+                        emo.innerHTML = hugPool[Math.floor(Math.random() * hugPool.length)];
+                        emo.style.left = "50vw";
+                        emo.style.top = "50vh";
+                        
+                        const mx = (Math.random() - 0.5) * 400 + "px";
+                        const my = (Math.random() - 0.5) * 400 + "px";
+                        emo.style.setProperty('--mx', mx);
+                        emo.style.setProperty('--my', my);
+                        
+                        document.body.appendChild(emo);
+                        setTimeout(() => emo.remove(), 800);
+                    }, Math.random() * 300);
+                }
+            } else {
+                triggerEmojiExplosion();
+            }
         }
 
         function triggerEmojiExplosion() {
