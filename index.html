@@ -1,160 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Mahi ❤️</title>
-
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mahi</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="loader">
-<h1>💖</h1>
-<h2>For Someone Very Special...</h2>
-
-<p>Dear Mahi ❤️</p>
-
-<button onclick="openGift()">🎁 Tap To Open</button>
-</div>
-
-<div id="main" style="display:none;">
-
-<section class="hero">
-
-<h1>🎂 Happy Birthday Mahi ❤️</h1>
-
-<p>
-
-12 July...
-
-The day the world got someone truly beautiful.
-
-</p>
-
-</section>
-
-<section class="card">
-
-<h2>💌 A Letter From Manish</h2>
-
-<p>
-
-Dear Mahi,
-
-November 2024...
-
-Pata hi nahi chala kab tum meri life ka sabse khoobsurat aur important part ban gayi.
-
-Tum sirf meri liye boht special ho.
-
-Tum meri smile ki wajah ho.
-
-Meri dua ho.
-
-Aur meri motivation ho.
-
-Mujhe tum par bahut proud feel hota hai ki tum itni pareshaniyon ke bad bhi apne dream chase kr rhi ho.
-
-Main dil se dua karta hoon ki ek din tum apna sapna zaroor pura karo.
-
-safar lamba hai aur mushkilein bhi aayengi,par tum kabhi himmat mat harna.
-jab bhi low feel kro,bas yad rakhna ki koi hai jo har pal tumhari sehat,
-tumhari khushi aur tumhari kamyabi ke liye pray kar raha hai.
-Please kabhi give up mat karna.
-
-Main hamesha tumhare liye pray karunga.
-
-❤️
-
-</p>
-
-</section>
-
-<section class="card">
-
-<h2>🌸 Your Favourite Things</h2>
-
-<ul>
-
-<li>💚 Pastel Colours</li>
-
-<li>🥟 Momos</li>
-
-<li>🍝 Pasta</li>
-
-<li>🍕 Margherita Pizza</li>
-
-<li>🥘 Chole Bhature</li>
-
-<li>🥞 Dosa</li>
-
-<li>🌧 Monsoon</li>
-
-<li>🏸 Badminton</li>
-
-<li>🎶 Lapataa</li>
-
-<li>🌿 Greenery & Peace</li>
-
-</ul>
-
-</section>
-
-<section class="card">
-
-<h2>📚 Future IAS Officer ❤️</h2>
-
-<p>
-
-I know one day you'll become an independent woman.
-
-I believe in your dreams.
-
-Keep studying.
-
-Keep smiling.
-
-I'll always be proud of you.
-
-❤️
-
-</p>
-
-</section>
-
-<section class="card">
-
-<h2>❤️ Forever</h2>
-
-<p>
-
-Distance can stop hugs.
-
-Distance can stop hand holding.
-
-But it can never stop someone from loving you.  
-
-Happy Birthday to the person who holds the most special place in my heart.
-You are the sweetest human I’ve ever known my golumolu, my kuchupuchu.
-You make my world brighter just by being in it. Stay exactly the way you are, always. 
-I’m so lucky to have you."
-May this year bring you closer to all your goals and fill your life with the happiness you deserve. Keep shining!"
-
-Happy Birthday Mahi.
-
-Forever Yours,
-
-❤️ Manish ❤️
-
-</p>
-
-</section>
-
-</div>
-
-<script src="script.js"></script>
-
+    <!-- Floating Avatar Stickers Background -->
+    <div class="floating-sticker sticker-1">✨</div>
+    <div class="floating-sticker sticker-2">🌸</div>
+
+    <!-- Section 1: Intro & Cake Cutting -->
+    <div class="card-section pop-up">
+        <h1 class="main-title">Happy Birthday, Mahi! 🎂</h1>
+        <div class="cake-container">
+            <div class="cake" id="birthdayCake" onclick="cutCake()">
+                <div class="flame" id="candleFlame"></div>
+                <div class="candle"></div>
+                <div class="top-layer"></div>
+                <div class="bottom-layer"></div>
+            </div>
+            <p id="cakeText" class="instruction">Tap the cake to blow the candle & cut it! 🕯️</p>
+        </div>
+    </div>
+
+    <!-- Section 2: Audio Portal -->
+    <div class="card-section pop-up delay-1">
+        <div class="audio-container">
+            <span class="sticker-emoji">🎵</span>
+            <p class="audio-subtext">Tap to hear a small piece of peace for your big journey... ✨</p>
+            <audio controls class="custom-audio">
+                <source src="song.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <!-- Section 3: Her Absolute Favorites (New Interactive Section!) -->
+    <div class="card-section pop-up delay-2">
+        <h2 class="section-title">Some of Your Favorite Things 💖</h2>
+        <div class="fav-grid">
+            <div class="fav-item"><strong>🍲 Food:</strong> Chole Bhature, Pasta, Dhokla, Dosa</div>
+            <div class="fav-item"><strong>🥟 Street Food:</strong> Momos (Of course!)</div>
+            <div class="fav-item"><strong>🎬 Movies:</strong> Maya, Nadiya Ke Paar, Fidaa</div>
+            <div class="fav-item"><strong>🏸 Sport:</strong> Badminton Champ</div>
+            <div class="fav-item"><strong>🍕 Pizza:</strong> Classic Margherita</div>
+            <div class="fav-item"><strong>🍂 Season:</strong> Monsoon (Without rain 😉)</div>
+            <div class="fav-item" style="grid-column: span 2;"><strong>🌿 Perfect Place:</strong> Jaha bas greenery aur dher saari shanti ho...</div>
+        </div>
+    </div>
+
+    <!-- Section 4: The Deep Wish -->
+    <div class="card-section pop-up delay-3">
+        <span class="sticker-emoji decoration-1">💝</span>
+        <p class="wish-text">
+            Happy Birthday to the person who holds the most special place in my heart. You are the sweetest human I’ve ever known—my <strong>golumolu</strong>, my <strong>kuchupuchu</strong>. You make my world brighter just by being in it.
+        </p>
+        <p class="wish-text">
+            Seeing your dedication towards your dreams makes me admire you even more. May this special year bring you the unwavering strength to conquer every single hurdle, the focus to master your goals, and the best of health to sustain your journey.
+        </p>
+        
+        <div class="lbsnaa-badge">
+            🏛️ LBSNAA is waiting for you, Future IAS! 💼
+        </div>
+        <p class="signature">— Manish</p>
+        <span class="sticker-emoji decoration-2">✨</span>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
