@@ -42,7 +42,6 @@
             text-shadow: 0 0 15px rgba(255, 79, 136, 0.4);
         }
 
-        /* --- Typing Effect Layout --- */
         .typing-container {
             font-size: 24px;
             font-weight: bold;
@@ -57,7 +56,7 @@
 
         @keyframes typing {
             from { width: 0; }
-            to { width: 160px; } /* Fits 'Dear Mahi ❤️' perfectly */
+            to { width: 160px; }
         }
 
         @keyframes blink {
@@ -95,7 +94,6 @@
             position: relative;
         }
 
-        /* --- Cracker Sparkle Elements --- */
         .cracker-particle {
             position: absolute;
             width: 6px;
@@ -128,6 +126,11 @@
 
         .story-page.active {
             display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @keyframes infiniteAmbientGlow {
@@ -289,7 +292,7 @@
         audio { display: none; }
     </style>
 </head>
-<body> 
+<body>
 <audio id="bgSong" loop>
         <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
     </audio>
@@ -306,7 +309,6 @@
 
     <div id="main">
 
-        <!-- Page 1: Cake Introduction + Cracker Burst Target Box -->
         <div class="story-page active" id="page-1">
             <h2>✨ Card 1/7 ✨</h2>
             <div class="cake-box" onclick="handleCakeClick()">
@@ -318,14 +320,12 @@
             </div>
         </div>
 
-        <!-- Page 2: Identity Welcome Header -->
         <div class="story-page" id="page-2">
             <h2>✨ Card 2/7 ✨</h2>
             <h1 style="font-size:36px; margin-bottom:20px; text-align:center;">🎂 Happy Birthday Mahi ❤️</h1>
             <p style="text-align:center; font-size:22px; width:100%;">12 July...<br><br>The day the world got someone truly beautiful, pure, and absolutely unique. ✨🌸</p>
         </div>
 
-        <!-- Page 3: Personal Letter Box -->
         <div class="story-page" id="page-3">
             <h2>✨ Card 3/7 ✨</h2>
             <h2 style="font-size:26px; text-align:center;">💌 A Piece of My Heart For You</h2>
@@ -336,7 +336,6 @@
             </p>
         </div>
 
-        <!-- Page 4: Polaroid Collage Grid fixed -->
         <div class="story-page" id="page-4">
             <h2>✨ Card 4/7 ✨</h2>
             <div style="text-align:center; margin-bottom: 15px;">
@@ -377,7 +376,6 @@
             </div>
         </div>
 
-        <!-- Page 5: Believe in Dreams Box -->
         <div class="story-page" id="page-5">
             <h2>✨ Card 5/7 ✨</h2>
             <h2 style="font-size:26px; text-align:center;">📚 Believe In Your Dream Job ❤️</h2>
@@ -386,7 +384,6 @@
             </p>
         </div>
 
-        <!-- Page 6: Deep Wishes & Flower Bouquet -->
         <div class="story-page" id="page-6">
             <h2>✨ Card 6/7 ✨</h2>
             <h2 style="font-size:26px; text-align:center;">💝 My Warmest Wishes For You</h2>
@@ -397,7 +394,6 @@
             <p style="text-align:right; font-weight:bold; margin-top:25px; color:#ff4f88; width:100%;">— ❤️ Manish ❤️</p>
         </div>
 
-        <!-- Page 7: Interactive Hug Box -->
         <div class="story-page" id="page-7">
             <h2>✨ Card 7/7 ✨</h2>
             <h2 style="font-size:26px; text-align:center;">🤗 A Final Surprise For You</h2>
@@ -437,12 +433,10 @@
             }
             triggerEmojiExplosion(false, false);
             
-            // Start constant loop of background birthday crackers on page 1
             crackerInterval = setInterval(launchBackgroundCracker, 600);
         }
 
         function changePage(direction) {
-            // Stop background crackers if user leaves page 1
             if(currentPage === 1 && direction === 1) {
                 clearInterval(crackerInterval);
             }
@@ -450,7 +444,6 @@
             document.getElementById(`page-${currentPage}`).classList.remove("active");
             currentPage += direction;
             
-            // Restart crackers if they navigate back to page 1
             if(currentPage === 1) {
                 clearInterval(crackerInterval);
                 crackerInterval = setInterval(launchBackgroundCracker, 600);
@@ -472,12 +465,11 @@
             triggerEmojiExplosion(false, false);
         }
 
-        // Cracker Launch Engine for Page 1
         function launchBackgroundCracker() {
             if(currentPage !== 1) return;
             const colors = ["#ff4f88", "#ffb6c1", "#ff69b4", "#ffd700", "#ffffff", "#ff6b6b"];
-            const startX = Math.random() * 90 + 5; // Spawn location anywhere horizontally
-            const startY = Math.random() * 50 + 15; // Vertical peak point
+            const startX = Math.random() * 90 + 5;
+            const startY = Math.random() * 50 + 15;
             
             const particleCount = 18;
             for(let i=0; i<particleCount; i++) {
@@ -487,7 +479,6 @@
                 p.style.top = startY + "vh";
                 p.style.background = colors[Math.floor(Math.random() * colors.length)];
                 
-                // Outer circle explosion vectors
                 const angle = (i / particleCount) * 2 * Math.PI;
                 const distance = 60 + Math.random() * 70;
                 const cx = Math.cos(angle) * distance + "px";
@@ -548,7 +539,6 @@
                 status.innerHTML = "Candle blown successfully! Now tap again to cut the cake! 🔪";
                 cakeState = 1;
                 triggerEmojiExplosion(false, false);
-                // Trigger celebratory cracker blast on success click
                 for(let i=0; i<3; i++) setTimeout(launchBackgroundCracker, i*150);
             } else if (cakeState === 1) {
                 display.innerHTML = "🍰✨"; 
