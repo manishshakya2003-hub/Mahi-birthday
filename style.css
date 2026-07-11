@@ -1,182 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+/* --- New Additions for Stickers, Cake and Badges --- */
 
-body {
-    background-color: #f7ebe1; /* Beautiful Soft Pastel Theme */
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #4a4a4a;
-    overflow-x: hidden;
-}
-
-/* Smooth Pop-up Entry Animations */
-.card-section {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 24px;
-    box-shadow: 0 10px 35px rgba(228, 190, 162, 0.3);
-    max-width: 500px;
-    width: 90%;
-    margin: 20px 0;
-    position: relative;
-    box-sizing: border-box;
-    opacity: 0;
-    transform: translateY(50px) scale(0.95);
-    animation: fadeInUpPop 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-.delay-1 { animation-delay: 0.3s; }
-.delay-2 { animation-delay: 0.6s; }
-.delay-3 { animation-delay: 0.9s; }
-
-@keyframes fadeInUpPop {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.main-title {
-    color: #e06c75;
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-}
-
-.section-title {
-    color: #e06c75;
-    font-size: 1.3rem;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Favorites Grid Layout */
-.fav-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.fav-item {
-    background: #fdf6f0;
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    border: 1px solid #f3dcd0;
-}
-
-/* Floating Decorative Elements */
-.floating-sticker {
+.floating-avatar {
     position: fixed;
-    font-size: 2rem;
-    z-index: -1;
-    opacity: 0.6;
-    animation: floatAnimation 4s ease-in-out infinite;
+    width: 75px;
+    height: auto;
+    z-index: 999;
+    pointer-events: none;
+    animation: avatarFloat 4s ease-in-out infinite;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(255, 79, 136, 0.2);
+    display: none; /* Initially hidden until gift opens */
 }
+.stk-left { top: 20%; left: 4%; }
+.stk-right { bottom: 25%; right: 4%; }
 
-.sticker-1 { top: 10%; left: 5%; }
-.sticker-2 { bottom: 15%; right: 5%; }
-
-.sticker-emoji {
-    font-size: 2.5rem;
-    display: block;
-    text-align: center;
-    animation: floatAnimation 3s ease-in-out infinite;
-}
-
-.decoration-1 { position: absolute; top: -20px; left: -10px; }
-.decoration-2 { position: absolute; bottom: -20px; right: -10px; }
-
-@keyframes floatAnimation {
+@keyframes avatarFloat {
     0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(8deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
 }
 
-/* --- Interactive Cake CSS --- */
-.cake-container {
+.cake-card { text-align: center; background: rgba(255, 255, 255, 0.9); }
+
+.cake-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 0;
-}
-
-.cake {
-    position: relative;
-    width: 150px;
-    height: 100px;
     cursor: pointer;
-    margin-top: 30px;
 }
-
-.bottom-layer {
+.cake-emoji {
+    font-size: 75px;
+    position: relative;
+    display: inline-block;
+}
+.candle-flame {
     position: absolute;
-    bottom: 0;
-    width: 150px;
-    height: 50px;
-    background: #f5b597; /* Pastel Peach */
-    border-radius: 10px 10px 0 0;
+    top: -10px;
+    left: 27px;
+    font-size: 25px;
+    animation: candleFlicker 0.6s infinite alternate;
 }
-
-.top-layer {
-    position: absolute;
-    bottom: 45px;
-    left: 15px;
-    width: 120px;
-    height: 40px;
-    background: #e06c75; /* Pastel Pinkish Red */
-    border-radius: 10px 10px 0 0;
+@keyframes candleFlicker {
+    0% { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(1.1); opacity: 1; }
 }
-
-.candle {
-    position: absolute;
-    bottom: 85px;
-    left: 70px;
-    width: 10px;
-    height: 30px;
-    background: #ffcc29;
-    border-radius: 3px;
-}
-
-.flame {
-    position: absolute;
-    bottom: 115px;
-    left: 71px;
-    width: 8px;
-    height: 15px;
-    background: #ff7f50;
-    border-radius: 50% 50% 20% 20%;
-    box-shadow: 0 0 10px rgba(255,127,80,0.8);
-    animation: flicker 0.5s infinite alternate;
-}
-
-@keyframes flicker {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.1) rotate(2deg); }
-}
-
-.instruction {
-    font-size: 0.9rem;
-    color: #999;
-    margin-top: 15px;
+.instruction-text {
+    font-size: 18px;
+    color: #666;
+    margin-top: 10px;
     font-style: italic;
-    transition: all 0.5s ease;
 }
-
-.custom-audio { width: 100%; margin-top: 10px; border-radius: 30px; }
-.audio-subtext { font-size: 0.9rem; color: #777; text-align: center; }
-.wish-text { font-size: 1.05rem; line-height: 1.7; text-align: justify; margin-bottom: 15px; }
 
 .lbsnaa-badge {
-    background: rgba(224, 108, 117, 0.1);
-    border-left: 4px solid #e06c75;
-    padding: 12px;
+    background: rgba(255, 79, 136, 0.1);
+    border-left: 4px solid #ff4f88;
+    padding: 15px;
     font-weight: bold;
-    color: #e06c75;
+    color: #ff4f88;
     text-align: center;
-    border-radius: 4px;
-    margin: 20px 0;
+    border-radius: 6px;
+    margin-top: 25px;
+    font-size: 22px;
 }
-.signature { text-align: right; font-weight: bold; color: #666; }
+
+audio { display: none; }
