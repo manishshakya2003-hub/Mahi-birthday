@@ -20,7 +20,7 @@
         }
 
         /* --- Viewport Layout System --- */
-        #passScreen, #loader, #main {
+        #loader, #main {
             min-height: 100vh;
             display: none;
             flex-direction: column;
@@ -32,13 +32,8 @@
             width: 100vw;
         }
 
-        #passScreen {
-            display: flex;
-            background: linear-gradient(135deg, #e0f7fa, #fff3e0, #fce4ec);
-            z-index: 10;
-        }
-
         #loader {
+            display: flex;
             background: linear-gradient(135deg, #e0f7fa, #fff3e0, #fce4ec);
             z-index: 8;
         }
@@ -94,25 +89,6 @@
             text-align: justify;
             color: #555;
             margin-bottom: 15px;
-        }
-
-        /* --- Form Input Component --- */
-        .pass-input {
-            padding: 14px 25px;
-            font-size: 19px;
-            border: 2px solid #ff7043;
-            border-radius: 30px;
-            outline: none;
-            margin-bottom: 20px;
-            text-align: center;
-            width: 85%;
-            max-width: 320px;
-            box-shadow: 0 5px 15px rgba(255, 112, 67, 0.05);
-            transition: 0.3s;
-        }
-
-        .pass-input:focus {
-            box-shadow: 0 0 15px rgba(255, 112, 67, 0.3);
         }
 
         button.btn-main, .nav-btn {
@@ -171,6 +147,7 @@
             align-items: center;
             cursor: pointer;
             margin: 25px 0;
+            width: 100%;
         }
 
         .hug-emoji {
@@ -225,23 +202,15 @@
 </head>
 <body>
 
+    <!-- Yahan par naya song audio file track -->
     <audio id="bgSong" loop>
-        <source src="Laapata Ek Tha Tiger 320 Kbps.mp3" type="audio/mpeg">
+        <source src="naya_song.mp3" type="audio/mpeg">
     </audio>
 
     <img src="png1.jpg" class="floating-avatar stk-left" alt="Avatar 1">
     <img src="png2.jpg" class="floating-avatar stk-right" alt="Avatar 2">
 
-    <!-- Screen 1: Access Lock -->
-    <div id="passScreen">
-        <h1 style="font-size: 42px; color: #ff7043; margin-bottom: 10px;">🩹 Stress Buster Zone</h1>
-        <h2 style="font-size:22px; margin-bottom: 25px; color:#555;">Mahi, are you stressed? Enter Key!</h2>
-        <input type="password" id="secretKey" class="pass-input" placeholder="Type mahi12 to smile...">
-        <button class="btn-main" onclick="verifyPassword()">Unlock Smile 🔑</button>
-        <p id="errorMsg" style="color:red; margin-top:15px; display:none; font-weight:bold;">Galat key! Smile karo aur sahi daalo ❤️</p>
-    </div>
-
-    <!-- Screen 2: Relax Welcome Opener -->
+    <!-- Screen 1: Relax Welcome Opener (Direct Entry) -->
     <div id="loader">
         <h1 style="font-size: 70px; margin-bottom: 10px;">🍫✨</h1>
         <h2 style="font-size: 40px; color: #ff7043; margin: 15px 0;">Relax, take a deep breath...</h2>
@@ -249,12 +218,12 @@
         <button class="btn-main" onclick="openGift()">👉 Enter Happy Space 🌸</button>
     </div>
 
-    <!-- Screen 3: Main Engine Deck (6 Cards Framework) -->
+    <!-- Screen 2: Main Engine Deck (6 Cards Framework) -->
     <div id="main">
         <!-- Page 1: Interactive Virtual Hug Hub -->
         <div class="story-page active" id="page-1">
             <h2>✨ Card 1/6: Emergency Hug ✨</h2>
-            <div class="cake-box" onclick="handleHugClick()">
+            <div class="hug-box" onclick="handleHugClick()">
                 <div class="hug-emoji" id="hugDisplay">🤗❤️</div>
                 <p style="text-align:center; font-style:italic; font-size:17px; margin-top:20px; color: #666;" id="hugStatus">Tap the emojis to receive a tight virtual hug! 💖</p>
             </div>
@@ -282,7 +251,6 @@
             <h2 style="font-size:30px; color: #ff7043; margin-bottom: 15px;">🍕 Cheat Day Goals!</h2>
             <p style="text-align: center; font-size: 17px; margin-bottom: 15px; color:#666;">Jab padhai se break milega, hum yeh sab khayenge:</p>
             <div class="collage-container">
-                <div class="collage-container">
                 <div class="collage-card"><span class="collage-emoji">🍲</span><span class="collage-label">Chole Bhature</span></div>
                 <div class="collage-card"><span class="collage-emoji">🥟</span><span class="collage-label">Momos ❤️</span></div>
                 <div class="collage-card"><span class="collage-emoji">🍕</span><span class="collage-label">Pasta & Pizza</span></div>
@@ -321,28 +289,26 @@
     <!-- --- Core Mechanics Engine scripts --- -->
     <script>
         let currentPage = 1; const totalPages = 6;
-        
-        function verifyPassword() {
-            const userInput = document.getElementById("secretKey").value.toLowerCase().trim();
-            if (userInput === "mahi12" || userInput === "manishadmin") {
-                document.getElementById("passScreen").style.display = "none";
-                document.getElementById("loader").style.display = "flex";
-            } else { document.getElementById("errorMsg").style.display = "block"; }
-        }
 
         function openGift() {
-            document.getElementById("loader").style.display = "none"; document.getElementById("main").style.display = "flex";
+            document.getElementById("loader").style.display = "none"; 
+            document.getElementById("main").style.display = "flex";
             document.querySelectorAll('.floating-avatar').forEach(s => s.style.display = 'block');
-            const audio = document.getElementById("bgSong"); if (audio) audio.play().catch(e => console.log("Audio pipeline loaded safely"));
+            const audio = document.getElementById("bgSong"); 
+            if (audio) audio.play().catch(e => console.log("Audio pipeline loaded safely"));
             triggerEmojiExplosion(["🌸", "✨", "💖", "🤗", "🥰"]);
         }
 
         function changePage(dir) {
-            document.getElementById(`page-${currentPage}`).classList.remove("active"); currentPage += dir;
+            document.getElementById(`page-${currentPage}`).classList.remove("active"); 
+            currentPage += dir;
+            
             if (currentPage > totalPages) {
-                currentPage = totalPages; document.getElementById(`page-${currentPage}`).classList.add("active");
+                currentPage = totalPages; 
+                document.getElementById(`page-${currentPage}`).classList.add("active");
                 return;
             }
+            
             document.getElementById(`page-${currentPage}`).classList.add("active");
             document.getElementById("prevBtn").style.visibility = currentPage === 1 ? "hidden" : "visible";
             document.getElementById("nextBtn").innerHTML = currentPage === totalPages ? "Close ❤️" : "Next ➡️";
@@ -356,24 +322,35 @@
 
         function triggerEmojiExplosion(pool) {
             for (let i = 0; i < 20; i++) {
-                const e = document.createElement("div"); e.className = "burst-emoji"; e.innerHTML = pool[Math.floor(Math.random()*pool.length)];
-                e.style.left = "50vw"; e.style.top = "50vh";
-                e.style.setProperty('--mx', (Math.random()-0.5)*360+"px"); e.style.setProperty('--my', (Math.random()-0.5)*350+"px");
-                document.body.appendChild(e); setTimeout(() => e.remove(), 800);
+                const e = document.createElement("div"); 
+                e.className = "burst-emoji"; 
+                e.innerHTML = pool[Math.floor(Math.random()*pool.length)];
+                e.style.left = "50vw"; 
+                e.style.top = "50vh";
+                e.style.setProperty('--mx', (Math.random()-0.5)*360+"px"); 
+                e.style.setProperty('--my', (Math.random()-0.5)*350+"px");
+                document.body.appendChild(e); 
+                setTimeout(() => e.remove(), 800);
             }
         }
 
         function handleHugClick() {
             const status = document.getElementById("hugStatus");
             status.innerHTML = "Infinite Hugs Dispatched Successfully! Smile now! 🥰❤️";
-            status.style.color = "#ff7043"; status.style.fontWeight = "bold";
+            status.style.color = "#ff7043"; 
+            status.style.fontWeight = "bold";
             triggerEmojiExplosion(["🤗", "❤️", "💖", "✨", "🤗"]);
         }
 
         setInterval(() => {
-            const star = document.createElement("div"); star.className = "star"; star.innerHTML = "✨";
-            star.style.left = Math.random() * 100 + "vw"; star.style.fontSize = (15 + Math.random() * 20) + "px"; star.style.animationDuration = (6 + Math.random() * 4) + "s";
-            document.body.appendChild(star); setTimeout(() => star.remove(), 8000);
+            const star = document.createElement("div"); 
+            star.className = "star"; 
+            star.innerHTML = "✨";
+            star.style.left = Math.random() * 100 + "vw"; 
+            star.style.fontSize = (15 + Math.random() * 20) + "px"; 
+            star.style.animationDuration = (6 + Math.random() * 4) + "s";
+            document.body.appendChild(star); 
+            setTimeout(() => star.remove(), 8000);
         }, 400);
     </script>
 </body>
