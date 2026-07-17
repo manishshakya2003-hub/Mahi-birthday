@@ -56,14 +56,39 @@
 
         .heart-rain { position: fixed; color: #ff4081; font-size: 20px; animation: floatUp 6s linear infinite; pointer-events: none; opacity: 0.7; z-index: 10; }
         @keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-10vh) rotate(360deg); } }
+
+        /* Floating Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(233, 30, 99, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+        .music-btn:hover { transform: scale(1.1); background: #e91e63; }
     </style>
 </head>
 <body>
 
-    <!-- Audio Player -->
-    <audio id="sorrySong" loop prefetch>
+    <!-- Audio Player with Cross-Origin enabled -->
+    <audio id="sorrySong" loop crossorigin="anonymous">
         <source src="https://pub-c5e31b5cdafb419a824e69397b27f4d4.r2.dev/Piya%20Piya%20Deewane%20Na%20Bano.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- Floating Audio Control -->
+    <button class="music-btn" onclick="toggleMusic()" id="musicCtrl">🎵</button>
 
     <div class="container">
         <!-- SCREEN 1: Enter Page -->
@@ -89,25 +114,28 @@
             <div style="font-size: 60px;">🙇‍♂️❤️</div>
             <h1>I'm So Sorry, Mahi!</h1>
             <p>
-                Main jaanta hoon aaj ki baat par tumhara gussa hona bilkul sahi hai. Maine bina soche samjhe tumhe pareshan kiya, aur ab jab tak tumhara gussa shaant nahi hota, mujhe bilkul achha nahi lagega. Meri wajah se tumhara mood kharab ho, ye main kabhi nahi chahta tha. Please ab gussa chhodo aur mujhe maaf kar do na? 🥺✨
+                Main jaanta hoon aaj ki baat par tumhara gussa hona bilkul sahi hai. Maine bina soche samjhe tumhe pareshan kiya, aur ab jamesi tak tumhara gussa shaant nahi hota, mujhe bilkul achha nahi lagega. Meri wajah se tumhara mood kharab ho, ye main kabhi nahi chahta tha. Please ab gussa chhodo aur mujhe maaf kar do na? 🥺✨
             </p>
             <p style="font-weight: bold; color: #ff4f81; font-size: 16px; margin-top: 20px;">✨ Now listening: Piya Piya Diwane Na Bno ✨</p>
         </div>
     </div>
 
     <script>
+        const song = document.getElementById('sorrySong');
+
         function goToScreen2() {
             document.getElementById('scr1').classList.remove('active-screen');
             document.getElementById('scr2').classList.add('active-screen');
+            // Try an early silent play to unblock browser policy
+            song.play().catch(e => console.log("Silent preload unblock failed, waiting for envelope tap."));
         }
 
         function openEnvelope() {
             document.getElementById('scr2').classList.remove('active-screen');
             document.getElementById('scr3').classList.add('active-screen');
             
-            const song = document.getElementById('sorrySong');
-            song.muted = false;
-            song.play().catch(e => console.log("Audio play failed"));
+            // Explicitly play music on envelope tap
+            playMusic();
 
             setInterval(() => {
                 const heart = document.createElement("div");
@@ -118,6 +146,25 @@
                 document.body.appendChild(heart);
                 setTimeout(() => heart.remove(), 6000);
             }, 400);
+        }
+
+        function playMusic() {
+            song.muted = false;
+            song.play().then(() => {
+                document.getElementById('musicCtrl').innerHTML = "⏸️";
+            }).catch(e => {
+                console.log("Play failed: ", e);
+                document.getElementById('musicCtrl').innerHTML = "▶️";
+            });
+        }
+
+        function toggleMusic() {
+            if (song.paused) {
+                playMusic();
+            } else {
+                song.pause();
+                document.getElementById('musicCtrl').innerHTML = "▶️";
+            }
         }
     </script>
 </body>
