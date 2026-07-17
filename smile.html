@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Soft-Hearted Mahi ❤️</title>
+    <title>Sorry Mahi 🥺</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         
         body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%) !important;
+            background: linear-gradient(135deg, #7a0826 0%, #2c030e 100%) !important;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -23,14 +23,23 @@
             perspective: 1000px;
         }
 
-        /* Screens Management */
-        .screen { display: none; background: rgba(255, 255, 255, 0.95); padding: 40px 30px; border-radius: 30px; box-shadow: 0 20px 40px rgba(233, 30, 99, 0.2); border: 2px solid #fff; }
+        /* Card Styling to match your dark theme */
+        .screen { 
+            display: none; 
+            background: rgba(30, 30, 30, 0.85); 
+            padding: 40px 30px; 
+            border-radius: 30px; 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
         .active-screen { display: block; animation: fadeIn 0.5s ease-in-out forwards; }
 
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        h1 { color: #d81b60; margin-bottom: 20px; font-size: 26px; }
-        p { color: #555; font-size: 18px; line-height: 1.6; margin-bottom: 25px; }
+        h1 { color: #ff4f81; margin-bottom: 20px; font-size: 28px; font-weight: bold; }
+        p { color: #e0e0e0; font-size: 18px; line-height: 1.6; margin-bottom: 25px; }
 
         .btn {
             background: #e91e63; color: white; border: none; padding: 15px 35px; border-radius: 50px;
@@ -45,7 +54,7 @@
             transition: transform 0.3s;
         }
         .envelope-wrapper:hover { transform: scale(1.05); }
-        .envelope-icon { font-size: 90px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); }
+        .envelope-icon { font-size: 90px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); }
 
         .heart-rain { position: fixed; color: #ff4081; font-size: 20px; animation: floatUp 6s linear infinite; pointer-events: none; opacity: 0.7; z-index: 10; }
         @keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-10vh) rotate(360deg); } }
@@ -53,7 +62,7 @@
 </head>
 <body>
 
-    <!-- Audio Player linked to your uploaded file -->
+    <!-- Audio Player connected to naya_song.mp3.mp3 -->
     <audio id="sorrySong" loop prefetch>
         <source src="naya_song.mp3.mp3" type="audio/mpeg">
     </audio>
@@ -61,30 +70,30 @@
     <div class="container">
         <!-- SCREEN 1: Enter Page -->
         <div class="screen active-screen" id="scr1">
-            <div style="font-size: 70px; margin-bottom: 10px;">💖</div>
-            <h1>Mahi... 🥺</h1>
-            <p>I know you are angry, but please open this. Ek baar mere dil ki baat sun lo.</p>
-            <button class="btn" onclick="goToScreen2()">Enter Here ❤️</button>
+            <div style="font-size: 70px; margin-bottom: 10px;">🙇‍♂️🥺</div>
+            <h1>Mahi... </h1>
+            <p>Mujhe pata hai tum gussa ho aur tumhari jagah main hota toh main bhi hota. Bas ek baar isse open kar lo?</p>
+            <button class="btn" onclick="goToScreen2()">Tap Here 🙏</button>
         </div>
 
         <!-- SCREEN 2: The Envelope -->
         <div class="screen" id="scr2">
             <h1>A Special Delivery ✉️</h1>
-            <p style="font-style: italic; color: #888;">"Mahi, open this for your soft and kind heart..."</p>
+            <p style="font-style: italic; color: #b0b0b0;">"Mahi, I am really sorry... 🧎‍♂️🙏"</p>
             <div class="envelope-wrapper" onclick="openEnvelope()">
                 <div class="envelope-icon">✉️</div>
-                <p style="color: #e91e63; font-weight: bold; margin-top: 15px;">👉 Tap to Open Envelope 👈</p>
+                <p style="color: #ff4f81; font-weight: bold; margin-top: 15px;">👉 Tap to Open Envelope 👈</p>
             </div>
         </div>
 
         <!-- SCREEN 3: The Sorry Reveal -->
         <div class="screen" id="scr3">
-            <div style="font-size: 50px;">🥺🌸</div>
+            <div style="font-size: 60px;">🙇‍♂️❤️</div>
             <h1>I'm So Sorry, Mahi!</h1>
             <p>
-                Main jaanta hoon kal maine sorry bola tha, par aaj jab tak tumhara gussa thanda nahi hota, mera dil shant nahi hoga. Tum sach mein bohot soft-hearted aur kind ho. Meri wajah se tumhare is pyaare se dil ko dukh pahunche, ye mujhe bilkul bardasht nahi hai. Please mujhe maaf kar do! ❤️
+                Main jaanta hoon aaj ki baat par tumhara gussa hona bilkul sahi hai. Maine bina soche samjhe tumhe pareshan kiya, aur ab jab tak tumhara gussa shaant nahi hota, mujhe bilkul achha nahi lagega. Meri wajah se tumhara mood kharab ho, ye main kabhi nahi chahta tha. Please ab gussa chhodo aur mujhe maaf kar do na? 🥺✨
             </p>
-            <p style="font-weight: bold; color: #d81b60; font-size: 16px;">✨ Now listening: Piya Piya Diwane Na Bno ✨</p>
+            <p style="font-weight: bold; color: #ff4f81; font-size: 16px; margin-top: 20px;">✨ Now listening: Piya Piya Diwane Na Bno ✨</p>
         </div>
     </div>
 
@@ -98,9 +107,20 @@
             document.getElementById('scr2').classList.remove('active-screen');
             document.getElementById('scr3').classList.add('active-screen');
             
-            // Play Song
+            // Force Play Audio on User Click
             const song = document.getElementById('sorrySong');
-            song.play().catch(e => console.log("Audio playing initiated."));
+            song.muted = false;
+            
+            var playPromise = song.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    console.log("Playback started successfully!");
+                }).catch(error => {
+                    console.log("Playback failed, trying again.");
+                    // Fallback injection for background play
+                    song.play();
+                });
+            }
 
             // Start Heart Rain
             setInterval(() => {
