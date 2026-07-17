@@ -3,128 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahi's Love Space ❤️</title>
+    <title>For My Soft-Hearted Mahi ❤️</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-
+        
         body {
-            /* Romantic Love Theme Gradient */
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%) !important;
-            overflow-x: hidden;
-            color: #333;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%) !important;
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
         }
 
-        #loader, #main {
-            min-height: 100vh; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; width: 100vw;
+        .container {
+            width: 90%;
+            max-width: 450px;
+            perspective: 1000px;
         }
 
-        #loader { display: flex; }
+        /* Screens Management */
+        .screen { display: none; background: rgba(255, 255, 255, 0.95); padding: 40px 30px; border-radius: 30px; box-shadow: 0 20px 40px rgba(233, 30, 99, 0.2); border: 2px solid #fff; }
+        .active-screen { display: block; animation: fadeIn 0.5s ease-in-out forwards; }
 
-        .story-page {
-            display: none; background: rgba(255, 255, 255, 0.9); padding: 40px 35px; border-radius: 40px; max-width: 550px; width: 90%;
-            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.2);
-            animation: slideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            text-align: center; border: 2px solid #fff;
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        h1 { color: #d81b60; margin-bottom: 20px; font-size: 26px; }
+        p { color: #555; font-size: 18px; line-height: 1.6; margin-bottom: 25px; }
+
+        .btn {
+            background: #e91e63; color: white; border: none; padding: 15px 35px; border-radius: 50px;
+            font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
         }
+        .btn:hover { transform: translateY(-3px); background: #d81b60; }
 
-        .story-page.active { display: block; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        .story-page h1, .story-page h2 { color: #d81b60; margin-bottom: 20px; }
-        .story-page p { font-size: 20px; line-height: 1.7; color: #555; margin-bottom: 20px; }
-
-        button.btn-main, .nav-btn {
-            padding: 15px 40px; border: none; background: #e91e63; color: white; border-radius: 50px; font-size: 18px; cursor: pointer; font-weight: bold;
-            transition: 0.3s; box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+        /* Envelope Interactive Style */
+        .envelope-wrapper {
+            cursor: pointer;
+            padding: 20px;
+            transition: transform 0.3s;
         }
-        button.btn-main:hover, .nav-btn:hover { transform: scale(1.05); background: #d81b60; }
+        .envelope-wrapper:hover { transform: scale(1.05); }
+        .envelope-icon { font-size: 90px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1)); }
 
-        .hug-box { display: flex; flex-direction: column; align-items: center; cursor: pointer; margin: 30px 0; }
-        .hug-emoji { font-size: 100px; transition: transform 0.3s; }
-        .hug-box:hover .hug-emoji { transform: scale(1.1); }
-
-        .nav-controls { display: flex; gap: 20px; margin-top: 30px; }
-        .nav-btn-back { background: #fff; color: #e91e63; border: 2px solid #e91e63; box-shadow: none; }
-
-        .star { position: fixed; color: #fff; font-size: 20px; animation: float 8s linear infinite; pointer-events: none; opacity: 0.6; }
-        @keyframes float { 0% { transform: translateY(100vh); } 100% { transform: translateY(-10vh); } }
-        audio { display: none; }
+        .heart-rain { position: fixed; color: #ff4081; font-size: 20px; animation: floatUp 6s linear infinite; pointer-events: none; opacity: 0.7; z-index: 10; }
+        @keyframes floatUp { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-10vh) rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <audio id="bgSong" loop>
+    <!-- Audio Player linked to your uploaded file -->
+    <audio id="sorrySong" loop prefetch>
         <source src="naya_song.mp3.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Screen 1: Loader -->
-    <div id="loader">
-        <h1 style="font-size: 70px; margin-bottom: 20px;">💖✨</h1>
-        <h2 style="color: #d81b60;">Hey Mahi...</h2>
-        <button class="btn-main" onclick="openGift()" style="margin-top: 20px;">Open My Heart ❤️</button>
-    </div>
+    <div class="container">
+        <!-- SCREEN 1: Enter Page -->
+        <div class="screen active-screen" id="scr1">
+            <div style="font-size: 70px; margin-bottom: 10px;">💖</div>
+            <h1>Mahi... 🥺</h1>
+            <p>I know you are angry, but please open this. Ek baar mere dil ki baat sun lo.</p>
+            <button class="btn" onclick="goToScreen2()">Enter Here ❤️</button>
+        </div>
 
-    <!-- Screen 2: Main Cards -->
-    <div id="main">
-        <div class="story-page active" id="page-1">
-            <h2>Card 1/4: Emergency Hug 🤗</h2>
-            <div class="hug-box" onclick="handleHugClick()">
-                <div class="hug-emoji" id="hugDisplay">🤗❤️</div>
-                <p id="hugStatus" style="font-weight:bold; color: #e91e63;">Tap for a warm hug!</p>
+        <!-- SCREEN 2: The Envelope -->
+        <div class="screen" id="scr2">
+            <h1>A Special Delivery ✉️</h1>
+            <p style="font-style: italic; color: #888;">"Mahi, open this for your soft and kind heart..."</p>
+            <div class="envelope-wrapper" onclick="openEnvelope()">
+                <div class="envelope-icon">✉️</div>
+                <p style="color: #e91e63; font-weight: bold; margin-top: 15px;">👉 Tap to Open Envelope 👈</p>
             </div>
         </div>
 
-        <div class="story-page" id="page-2">
-            <h2>Card 2/4: Stop Overthinking 🛑</h2>
-            <p>Tum bohot strong ho, Mahi. Apne pyaare chehre se yeh udaasi hatao aur ek smile do. Main hamesha tumhare sath hoon! 😊✨</p>
-        </div>
-
-        <div class="story-page" id="page-3">
-            <h2>Card 3/4: I'm Sorry... 🥺</h2>
-            <p>Mujhe sach mein sorry bolna tha. Tum toh bohot hi soft hearted aur kind ho. Kabhi bhi meri wajah se tumhara dil dukhna mujhe bilkul pasand nahi hai. Please gussa mat hona. 🌸✨</p>
-        </div>
-
-        <div class="story-page" id="page-4">
-            <h2>Card 4/4: My Golumolu ❤️</h2>
-            <p>Tum meri har khushi ki wajah ho. Tumhe haste hue dekhna mujhe sukoon deta hai. Smile hamesha barkarar rehni chahiye meri jaaaan! 🥰💖</p>
-            <p style="font-weight:bold; margin-top:20px; color:#d81b60;">— With Love, Manish</p>
-        </div>
-
-        <div class="nav-controls">
-            <button class="nav-btn nav-btn-back" id="prevBtn" onclick="changePage(-1)" style="visibility:hidden;">Back</button>
-            <button class="nav-btn" id="nextBtn" onclick="changePage(1)">Next ➡️</button>
+        <!-- SCREEN 3: The Sorry Reveal -->
+        <div class="screen" id="scr3">
+            <div style="font-size: 50px;">🥺🌸</div>
+            <h1>I'm So Sorry, Mahi!</h1>
+            <p>
+                Main jaanta hoon kal maine sorry bola tha, par aaj jab tak tumhara gussa thanda nahi hota, mera dil shant nahi hoga. Tum sach mein bohot soft-hearted aur kind ho. Meri wajah se tumhare is pyaare se dil ko dukh pahunche, ye mujhe bilkul bardasht nahi hai. Please mujhe maaf kar do! ❤️
+            </p>
+            <p style="font-weight: bold; color: #d81b60; font-size: 16px;">✨ Now listening: Piya Piya Diwane Na Bno ✨</p>
         </div>
     </div>
 
     <script>
-        let currentPage = 1;
-        function openGift() {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("main").style.display = "flex";
-            const audio = document.getElementById("bgSong");
-            audio.play().catch(e => console.log("Audio waiting..."));
+        function goToScreen2() {
+            document.getElementById('scr1').classList.remove('active-screen');
+            document.getElementById('scr2').classList.add('active-screen');
         }
 
-        function changePage(dir) {
-            document.getElementById(`page-${currentPage}`).classList.remove("active");
-            currentPage += dir;
-            if(currentPage > 4) currentPage = 4;
-            if(currentPage < 1) currentPage = 1;
-            document.getElementById(`page-${currentPage}`).classList.add("active");
-            document.getElementById("prevBtn").style.visibility = currentPage === 1 ? "hidden" : "visible";
-            document.getElementById("nextBtn").innerHTML = currentPage === 4 ? "Close ❤️" : "Next ➡️";
-        }
+        function openEnvelope() {
+            document.getElementById('scr2').classList.remove('active-screen');
+            document.getElementById('scr3').classList.add('active-screen');
+            
+            // Play Song
+            const song = document.getElementById('sorrySong');
+            song.play().catch(e => console.log("Audio playing initiated."));
 
-        function handleHugClick() {
-            document.getElementById("hugStatus").innerHTML = "Infinite Hugs Dispatched! 🥰❤️";
+            // Start Heart Rain
+            setInterval(() => {
+                const heart = document.createElement("div");
+                heart.className = "heart-rain";
+                heart.innerHTML = Math.random() > 0.5 ? "❤️" : "🌸";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.fontSize = (15 + Math.random() * 20) + "px";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 6000);
+            }, 400);
         }
-
-        setInterval(() => {
-            const star = document.createElement("div"); star.className = "star"; star.innerHTML = "❤️";
-            star.style.left = Math.random() * 100 + "vw"; document.body.appendChild(star);
-            setTimeout(() => star.remove(), 8000);
-        }, 500);
     </script>
 </body>
 </html>
