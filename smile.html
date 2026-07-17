@@ -23,7 +23,6 @@
             perspective: 1000px;
         }
 
-        /* Card Styling to match your dark theme */
         .screen { 
             display: none; 
             background: rgba(30, 30, 30, 0.85); 
@@ -47,7 +46,6 @@
         }
         .btn:hover { transform: translateY(-3px); background: #d81b60; }
 
-        /* Envelope Interactive Style */
         .envelope-wrapper {
             cursor: pointer;
             padding: 20px;
@@ -62,16 +60,16 @@
 </head>
 <body>
 
-    <!-- Audio Player connected to naya_song.mp3.mp3 -->
+    <!-- Audio Player -->
     <audio id="sorrySong" loop prefetch>
-        <source src="naya_song.mp3.mp3" type="audio/mpeg">
+        <source src="https://pub-c5e31b5cdafb419a824e69397b27f4d4.r2.dev/Piya%20Piya%20Deewane%20Na%20Bano.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
         <!-- SCREEN 1: Enter Page -->
         <div class="screen active-screen" id="scr1">
             <div style="font-size: 70px; margin-bottom: 10px;">🙇‍♂️🥺</div>
-            <h1>Mahi... </h1>
+            <h1>Mahi, I am really sorry... 🥺🙏</h1>
             <p>Mujhe pata hai tum gussa ho aur tumhari jagah main hota toh main bhi hota. Bas ek baar isse open kar lo?</p>
             <button class="btn" onclick="goToScreen2()">Tap Here 🙏</button>
         </div>
@@ -107,22 +105,10 @@
             document.getElementById('scr2').classList.remove('active-screen');
             document.getElementById('scr3').classList.add('active-screen');
             
-            // Force Play Audio on User Click
             const song = document.getElementById('sorrySong');
             song.muted = false;
-            
-            var playPromise = song.play();
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    console.log("Playback started successfully!");
-                }).catch(error => {
-                    console.log("Playback failed, trying again.");
-                    // Fallback injection for background play
-                    song.play();
-                });
-            }
+            song.play().catch(e => console.log("Audio play failed"));
 
-            // Start Heart Rain
             setInterval(() => {
                 const heart = document.createElement("div");
                 heart.className = "heart-rain";
